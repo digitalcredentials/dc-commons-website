@@ -3,11 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome to Digital Credentials Commons (DCC) - Connecting institutions, organizations, platforms, and companies across the digital credentialing ecosystem.</title>
-  <meta name="description" content="Welcome to Digital Credentials Commons (DCC)">
+<title>DC Commons — Connecting institutions, organizations, platforms, and companies across the digital credentialing ecosystem.</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%23FFFFFF'/%3E%3Ccircle cx='20' cy='20' r='18' stroke='%235E8C6A' stroke-width='2'/%3E%3Ccircle cx='20' cy='20' r='13' stroke='%23D4A228' stroke-width='2' stroke-dasharray='2 3'/%3E%3Cpath d='M12 20.5L17 25.5L28 13' stroke='%232F6B52' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -51,8 +48,10 @@
     position:fixed;
     inset:0;
     z-index:0;
-    opacity:0.35;
+    opacity:0.7;
     pointer-events:none;
+    transform:translateY(60px) scale(1.08);
+    transform-origin:center top;
   }
 
   /* ---------- layout shell ---------- */
@@ -71,7 +70,7 @@
     display:flex;
     align-items:center;
     justify-content:flex-start;
-    padding:24px 0 40px;
+    padding:24px 0 24px;
   }
   .brand{
     display:flex;
@@ -81,9 +80,9 @@
   .brand svg{ width:44px; height:44px; }
   .wordmark{
     display:flex;
-    align-items:baseline;
-    gap:10px;
-    flex-wrap:wrap;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:2px;
   }
   .mark-dcc{
     font-family:'IBM Plex Mono', monospace;
@@ -99,6 +98,7 @@
     letter-spacing:0.06em;
     text-transform:uppercase;
     color:var(--seal);
+    margin-bottom:12px;
   }
   .mark-commons{ color:#D4A228; }
 
@@ -108,7 +108,7 @@
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
-    padding:16px 0 48px;
+    padding:4px 0 48px;
   }
 
   h1{
@@ -193,6 +193,24 @@
     letter-spacing:0.02em;
   }
 
+  .link-row{
+    margin-top:36px;
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .link-row a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    letter-spacing:0.04em;
+    color:var(--seal);
+    text-decoration:underline;
+    text-decoration-color:var(--seal);
+    text-underline-offset:2px;
+  }
+  .link-row a:hover{ color:var(--seal-lt); text-decoration-color:var(--seal-lt); }
+
   /* ---------- footer ---------- */
   footer{
     border-top:1px solid var(--line);
@@ -254,7 +272,8 @@
     <div class="lede">
       <p>Founded in 2018 at MIT Open Learning by leading universities across North America, Europe, and Asia, <a href="https://dcconsortium.org/" target="_blank" rel="noopener">Digital Credentials Consortium (DCC)</a> built a trusted, shared infrastructure for issuing, storing, displaying, and verifying digital credentials for education and workforce. DCC now has a new name and a new home: the Digital Credentials Commons at <a href="https://www.strada.org/" target="_blank" rel="noopener">Strada Education Foundation</a>, built to power learner mobility between education and the workforce.</p>
       <p>At the center of this work is a simple goal: <strong>empowering learners to have real access to and control over their credential data</strong>, so they can store and share their achievements wherever opportunity takes them.</p>
-      <p>As a Commons, we're connecting institutions, organizations, platforms, and companies across the digital credentialing ecosystem. Together, we will scale our services and continue to advance the understanding and use of privacy-enhanced, verifiable, data-rich digital credentials through open source technology development and leadership, research, and advocacy.</p><p>Educators, technologists, researchers, policymakers, and lifelong learners, help us shape what comes next. All are welcome.</p>
+      <p>As a Commons, we're connecting institutions, organizations, platforms, and companies across the digital credentialing ecosystem. Together, we will scale our services and continue to advance the understanding and use of privacy-enhanced, verifiable, data-rich digital credentials through open source technology development and leadership, research, and advocacy.</p>
+      <p>Educators, technologists, researchers, policymakers, and lifelong learners, help us shape what comes next. All are welcome.</p>
     </div>
 
     <div class="signup">
@@ -264,6 +283,12 @@
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
+    </div>
+
+    <div class="link-row">
+      <a href="https://wiki.dcconsortium.org/" target="_blank" rel="noopener">DCC Knowledge Base</a>
+      <a href="https://badging.dcconsortium.org/lcw-experience-badge" target="_blank" rel="noopener">LCW Experience Badge</a>
+      <a href="https://github.com/digitalcredentials" target="_blank" rel="noopener">DCC GitHub</a>
     </div>
   </main>
 
@@ -290,16 +315,17 @@
           pts.push({x,y});
         }
       }
-      // connect each point to its nearest neighbor(s) sparsely
-      pts.forEach((p, idx) => {
-        const dists = pts
+      // randomly choose which points become visible dots
+      const dots = pts.filter(() => Math.random() > 0.45);
+      // connect each dot to its nearest dot neighbors, so every visible dot has a line
+      dots.forEach((p, idx) => {
+        const dists = dots
           .map((q, qi) => ({qi, d: Math.hypot(p.x-q.x, p.y-q.y)}))
           .filter(o => o.qi !== idx)
           .sort((a,b)=>a.d-b.d)
           .slice(0, 2);
         dists.forEach(o => {
-          if(Math.random() > 0.45) return; // sparsify
-          const q = pts[o.qi];
+          const q = dots[o.qi];
           const line = document.createElementNS(ns, 'line');
           line.setAttribute('x1', p.x); line.setAttribute('y1', p.y);
           line.setAttribute('x2', q.x); line.setAttribute('y2', q.y);
@@ -308,12 +334,11 @@
           svg.appendChild(line);
         });
       });
-      pts.forEach(p => {
-        if(Math.random() > 0.55) return;
+      dots.forEach(p => {
         const c = document.createElementNS(ns, 'circle');
         c.setAttribute('cx', p.x); c.setAttribute('cy', p.y);
-        c.setAttribute('r', Math.random() > 0.85 ? 2.4 : 1.4);
-        c.setAttribute('fill', Math.random() > 0.9 ? 'rgba(94,140,106,0.5)' : 'rgba(43,43,46,0.16)');
+        c.setAttribute('r', Math.random() > 0.85 ? 3.4 : 2.2);
+        c.setAttribute('fill', Math.random() > 0.9 ? 'rgba(212,162,40,0.6)' : 'rgba(212,162,40,0.28)');
         svg.appendChild(c);
       });
     }
@@ -322,6 +347,5 @@
     window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 200); });
   })();
 </script>
-
 </body>
 </html>

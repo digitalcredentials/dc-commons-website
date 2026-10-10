@@ -45,17 +45,24 @@ function setStatus(el, msg, kind){ el.textContent = msg; el.className = "status"
 function fieldError(input, msg){
   var field = input.closest(".field"), p = document.createElement("p");
   p.className = "field-error"; p.id = input.id + "-error"; p.textContent = msg;
-  /* under the question for a checkbox group, under the box itself for a text field */
-  var legend = field.querySelector("legend");
-  if (legend && input.type === "checkbox") legend.after(p); else input.after(p);
-  input.setAttribute("aria-describedby", p.id);
-  input.focus({ preventScroll: true });
+  p.setAttribute("role", "alert");
+  /* Above the input (under its label or question), so a phone keyboard opening
+     below the focused field doesn't cover it. */
+  var head = field.querySelector("legend") || field.querySelector("label");
+  if (head && input.type === "checkbox") head.after(p); else input.before(p);
+  (input.type === "checkbox" ? field : input).setAttribute("aria-describedby", p.id);
   p.scrollIntoView({ block: "center" });
+  input.focus({ preventScroll: true });
 }
-function clearErrors(form){
-  form.querySelectorAll(".field-error").forEach(function(p){ p.remove(); });
-  form.querySelectorAll("[aria-describedby]").forEach(function(i){ i.removeAttribute("aria-describedby"); });
+function clearErrors(scope){
+  scope.querySelectorAll(".field-error").forEach(function(p){ p.remove(); });
+  scope.querySelectorAll("[aria-describedby]").forEach(function(i){ i.removeAttribute("aria-describedby"); });
 }
+/* Clear a field's error as soon as it's corrected. */
+document.getElementById("contactForm").addEventListener("input", function(e){
+  var field = e.target.closest(".field");
+  if (field && field.querySelector(".field-error")) clearErrors(field);
+});
 
 document.querySelectorAll("input[data-other]").forEach(function(box){
   var text = document.getElementById(box.dataset.other);
@@ -87,9 +94,11 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   if (!name) { fieldError(f.name, "Add your name so we know who to reply to."); return; }
   if (!EMAIL_RE.test(email)) { fieldError(f.email, "Enter an email address, like name@example.org."); return; }
   if (!f.querySelector('input[name="org"]:checked')) { fieldError(f["f-org-1"], "Choose at least one option."); return; }
-  if (f["f-org-other"].checked && !f.orgOther.value.trim()) { fieldError(f.orgOther, "Describe your organization, or untick Other."); return; }
   if (!f.querySelector('input[name="interest"]:checked')) { fieldError(f["f-int-1"], "Choose at least one option."); return; }
-  if (f["f-int-other"].checked && !f.intOther.value.trim()) { fieldError(f.intOther, "Describe your interest, or untick Other."); return; }
+  var emptyOther = Array.prototype.find.call(f.querySelectorAll("input[data-other]:checked"), function(box){
+    return !document.getElementById(box.dataset.other).value.trim();
+  });
+  if (emptyOther) { fieldError(document.getElementById(emptyOther.dataset.other), "Add a short description, or uncheck Other."); return; }
   var E = GOOGLE_FORM.entries;
   if (!GOOGLE_FORM.action || !E.name || !E.email || !E.org || !E.interest || !E.note) {
     setStatus(status, "Draft: the form isn't connected yet. On the live site, this sends your details to the team.", "ok");
@@ -105,10 +114,11 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   if (f.note.value.trim()) data.append(E.note, f.note.value.trim());
   var src = new URLSearchParams(location.search).get("src");
   if (src && E.source) data.append(E.source, src);
+  var label = send.textContent;
   send.disabled = true; send.textContent = "Sending\u2026";
   fetch(GOOGLE_FORM.action, { method:"POST", mode:"no-cors", body:data })
     .then(function(){ f.reset(); f.querySelectorAll(".other-text").forEach(function(t){ t.hidden = true; });
       setStatus(status, "Thanks, " + name.split(" ")[0] + ". We'll be in touch.", "ok"); })
     .catch(function(){ setStatus(status, "That didn't go through. Check your connection and try again.", "err"); })
-    .then(function(){ send.disabled = false; send.textContent = "Send"; });
+    .then(function(){ send.disabled = false; send.textContent = label; });
 });

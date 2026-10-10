@@ -182,7 +182,7 @@ ol.steps span{color:var(--ink-2)}
 .tool:last-child{padding-bottom:0}
 .tool-name{font-weight:650;color:var(--indigo-deep)}
 .tool-links{font-size:var(--step--1);display:flex;flex-wrap:wrap;gap:0 18px;font-weight:500}
-.tool-links a{display:inline-block;padding-block:8px}
+.tool-links a{display:inline-block;padding-block:12px}
 
 /* forms */
 form.contact{display:flex;flex-direction:column;gap:22px;max-width:42rem;margin-top:8px}

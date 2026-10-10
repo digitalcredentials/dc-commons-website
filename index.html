@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digital Credentials Commons</title>
 <meta name="description" content="Digital credentials that go where you go. Digital Credentials Commons builds open-source software and helps shape open standards for verifiable credentials.">
-<meta name="theme-color" content="#293F7D">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Digital Credentials Commons">
 <meta property="og:description" content="Digital credentials that go where you go. Portable, private and instantly verifiable.">
@@ -29,7 +29,7 @@
   <div class="wrap">
     <a class="logo" href="#top">
       <picture>
-        <source media="(max-width: 760px)" srcset="assets/img/dcc-lockup-horizontal.svg">
+        <source media="(max-width: 760px)" srcset="assets/img/dcc-lockup-horizontal.svg" width="157" height="44">
         <img src="assets/img/dcc-lockup-one-line.svg" alt="Digital Credentials Commons" width="270" height="40">
       </picture>
     </a>
@@ -115,7 +115,7 @@
             <h3>Try it yourself</h3>
             <p>The quickest way to understand a digital credential is to hold one. Tell us your name and email, and we&rsquo;ll send you a sample credential to add to Learner Credential Wallet on your phone.</p>
             <form class="sample-form" id="sampleForm" method="post" novalidate>
-              <input type="text" id="sample-name" name="name" autocomplete="name" placeholder="Your name" required aria-label="Your name">
+              <input type="text" id="sample-name" name="name" autocomplete="name" autocapitalize="words" spellcheck="false" placeholder="Your name" required aria-label="Your name">
               <input type="email" id="sample-email" name="email" autocomplete="email" placeholder="you@example.org" required aria-label="Your email">
               <button type="submit" class="btn btn-primary">Send me a sample credential</button>
             </form>
@@ -209,7 +209,7 @@
         <form class="contact" id="contactForm" method="post" novalidate>
           <div class="field">
             <label for="f-name">Name <span class="req">(required)</span></label>
-            <input type="text" id="f-name" name="name" autocomplete="name" required>
+            <input type="text" id="f-name" name="name" autocomplete="name" autocapitalize="words" spellcheck="false" required>
           </div>
           <div class="field">
             <label for="f-email">Email <span class="req">(required)</span></label>

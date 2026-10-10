@@ -48,7 +48,7 @@ p{margin:0}
 .logo{display:block;line-height:0}
 .logo img{width:auto;height:40px;display:block}
 .site-nav{display:flex;gap:6px 26px;flex-wrap:wrap;font-size:var(--step--1);font-weight:500}
-.site-nav a{color:var(--ink);text-decoration:none;padding-block:4px}
+.site-nav a{color:var(--ink);text-decoration:none;display:inline-block;padding-block:12px}
 .site-nav a:hover{color:var(--indigo);text-decoration:underline}
 .site-nav a.nav-contact{color:var(--indigo);font-weight:600}
 @media (max-width:760px){
@@ -181,7 +181,8 @@ ol.steps span{color:var(--ink-2)}
 .tool{padding-block:14px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:4px}
 .tool:last-child{padding-bottom:0}
 .tool-name{font-weight:650;color:var(--indigo-deep)}
-.tool-links{font-size:var(--step--1);display:flex;flex-wrap:wrap;gap:4px 18px;font-weight:500}
+.tool-links{font-size:var(--step--1);display:flex;flex-wrap:wrap;gap:0 18px;font-weight:500}
+.tool-links a{display:inline-block;padding-block:8px}
 
 /* forms */
 form.contact{display:flex;flex-direction:column;gap:22px;max-width:42rem;margin-top:8px}
@@ -206,8 +207,11 @@ textarea{min-height:110px;resize:vertical}
 .status:empty{min-height:0}
 .status.ok{color:var(--green)}
 .status.err{color:#9B2C2C}
+.field-error{margin:2px 0 0;font-size:var(--step--1);font-weight:500;color:#9B2C2C}
+.btn:disabled{opacity:.7;cursor:progress}
 
 /* footer */
 .site-footer{border-top:1px solid var(--rule);background:var(--wash)}
 .site-footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;font-size:var(--step--1);color:var(--ink-2)}
-.site-footer nav{display:flex;flex-wrap:wrap;gap:6px 22px;font-weight:500}
+.site-footer nav{display:flex;flex-wrap:wrap;gap:0 22px;font-weight:500}
+.site-footer nav a{display:inline-block;padding-block:12px}

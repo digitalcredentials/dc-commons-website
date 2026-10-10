@@ -25,13 +25,37 @@ document.getElementById("page").dataset.sample = FEATURES.sampleCredential ? "on
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     items.forEach(function(li){ li.classList.add("ok"); }); finish(); return;
   }
-  var t = 900;
-  items.forEach(function(li){ setTimeout(function(){ li.classList.add("ok"); }, t); t += 650; });
-  setTimeout(finish, t);
+  function play(){
+    var t = 600;
+    items.forEach(function(li){ setTimeout(function(){ li.classList.add("ok"); }, t); t += 650; });
+    setTimeout(finish, t);
+  }
+  if (!("IntersectionObserver" in window)) { play(); return; }
+  var seen = new IntersectionObserver(function(entries){
+    if (entries[0].isIntersecting) { seen.disconnect(); play(); }
+  }, { threshold: 0.6 });
+  seen.observe(box);
 })();
 
 var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function setStatus(el, msg, kind){ el.textContent = msg; el.className = "status" + (kind ? " " + kind : ""); }
+
+/* Show a validation message right under the field it's about, so it stays in view
+   on a phone when focus moves there. */
+function fieldError(input, msg){
+  var field = input.closest(".field"), p = document.createElement("p");
+  p.className = "field-error"; p.id = input.id + "-error"; p.textContent = msg;
+  /* under the question for a checkbox group, under the box itself for a text field */
+  var legend = field.querySelector("legend");
+  if (legend && input.type === "checkbox") legend.after(p); else input.after(p);
+  input.setAttribute("aria-describedby", p.id);
+  input.focus({ preventScroll: true });
+  p.scrollIntoView({ block: "center" });
+}
+function clearErrors(form){
+  form.querySelectorAll(".field-error").forEach(function(p){ p.remove(); });
+  form.querySelectorAll("[aria-describedby]").forEach(function(i){ i.removeAttribute("aria-describedby"); });
+}
 
 document.querySelectorAll("input[data-other]").forEach(function(box){
   var text = document.getElementById(box.dataset.other);
@@ -56,13 +80,16 @@ document.getElementById("sampleForm").addEventListener("submit", function(e){
 
 document.getElementById("contactForm").addEventListener("submit", function(e){
   e.preventDefault();
-  var f = e.target, status = document.getElementById("contactStatus");
-  if (f.trap.value) return;
+  var f = e.target, status = document.getElementById("contactStatus"), send = f.querySelector('button[type="submit"]');
+  if (f.trap.value || send.disabled) return;
+  clearErrors(f); setStatus(status, "");
   var name = f.name.value.trim(), email = f.email.value.trim();
-  if (!name) { setStatus(status, "Add your name so we know who to reply to.", "err"); f.name.focus(); return; }
-  if (!EMAIL_RE.test(email)) { setStatus(status, "Enter an email address, like name@example.org.", "err"); f.email.focus(); return; }
-  if (!f.querySelector('input[name="org"]:checked')) { setStatus(status, "Choose at least one option for your organization.", "err"); f["f-org-1"].focus(); return; }
-  if (!f.querySelector('input[name="interest"]:checked')) { setStatus(status, "Choose at least one thing you're interested in.", "err"); f["f-int-1"].focus(); return; }
+  if (!name) { fieldError(f.name, "Add your name so we know who to reply to."); return; }
+  if (!EMAIL_RE.test(email)) { fieldError(f.email, "Enter an email address, like name@example.org."); return; }
+  if (!f.querySelector('input[name="org"]:checked')) { fieldError(f["f-org-1"], "Choose at least one option."); return; }
+  if (f["f-org-other"].checked && !f.orgOther.value.trim()) { fieldError(f.orgOther, "Describe your organization, or untick Other."); return; }
+  if (!f.querySelector('input[name="interest"]:checked')) { fieldError(f["f-int-1"], "Choose at least one option."); return; }
+  if (f["f-int-other"].checked && !f.intOther.value.trim()) { fieldError(f.intOther, "Describe your interest, or untick Other."); return; }
   var E = GOOGLE_FORM.entries;
   if (!GOOGLE_FORM.action || !E.name || !E.email || !E.org || !E.interest || !E.note) {
     setStatus(status, "Draft: the form isn't connected yet. On the live site, this sends your details to the team.", "ok");
@@ -78,8 +105,10 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   if (f.note.value.trim()) data.append(E.note, f.note.value.trim());
   var src = new URLSearchParams(location.search).get("src");
   if (src && E.source) data.append(E.source, src);
+  send.disabled = true; send.textContent = "Sending\u2026";
   fetch(GOOGLE_FORM.action, { method:"POST", mode:"no-cors", body:data })
     .then(function(){ f.reset(); f.querySelectorAll(".other-text").forEach(function(t){ t.hidden = true; });
       setStatus(status, "Thanks, " + name.split(" ")[0] + ". We'll be in touch.", "ok"); })
-    .catch(function(){ setStatus(status, "That didn't go through. Check your connection and try again.", "err"); });
+    .catch(function(){ setStatus(status, "That didn't go through. Check your connection and try again.", "err"); })
+    .then(function(){ send.disabled = false; send.textContent = "Send"; });
 });

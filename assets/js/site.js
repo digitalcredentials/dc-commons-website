@@ -3,11 +3,14 @@
    "Try it yourself" block on or off together. */
 var FEATURES = { sampleCredential: false };
 
-/* Submissions go to a Google Form. Fill in the form's formResponse URL and each question's
-   entry ID (from the form's "Get pre-filled link"). Until then the forms run in draft mode. */
+/* "Get in touch" submissions go to the "Getting Involved with DCC" Google Form.
+   Entry IDs come from the form's "Get pre-filled link". The checkbox values in index.html
+   must match the form's options exactly, and the form requires a name, an email and at
+   least one choice in each checkbox question. Add a short-answer "source" question to the
+   form and put its ID in `source` to record ?src= links. */
 var GOOGLE_FORM = {
-  action: "",                 // https://docs.google.com/forms/d/e/<FORM_ID>/formResponse
-  entries: { name:"", email:"", org:"", orgOther:"", interest:"", intOther:"", note:"", source:"" }
+  action: "https://docs.google.com/forms/d/e/1FAIpQLSdSKOHvGRTa11kynfITDm0HUtcfF0lZBmHEC3kPwDDIwnD5HA/formResponse",
+  entries: { name:"entry.643252456", email:"entry.919152693", org:"entry.1706988591", interest:"entry.1988524056", note:"entry.593582980", source:"" }
 };
 var SAMPLE_ENDPOINT = "";     // the service that emails a sample credential
 
@@ -58,6 +61,8 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   var name = f.name.value.trim(), email = f.email.value.trim();
   if (!name) { setStatus(status, "Add your name so we know who to reply to.", "err"); f.name.focus(); return; }
   if (!EMAIL_RE.test(email)) { setStatus(status, "Enter an email address, like name@example.org.", "err"); f.email.focus(); return; }
+  if (!f.querySelector('input[name="org"]:checked')) { setStatus(status, "Choose at least one option for your organization.", "err"); f["f-org-1"].focus(); return; }
+  if (!f.querySelector('input[name="interest"]:checked')) { setStatus(status, "Choose at least one thing you're interested in.", "err"); f["f-int-1"].focus(); return; }
   var E = GOOGLE_FORM.entries;
   if (!GOOGLE_FORM.action || !E.name || !E.email || !E.org || !E.interest || !E.note) {
     setStatus(status, "Draft: the form isn't connected yet. On the live site, this sends your details to the team.", "ok");

@@ -2,363 +2,278 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DC Commons — Connecting institutions, organizations, platforms, and companies across the digital credentialing ecosystem.</title>
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Credentials Commons</title>
+<meta name="description" content="Digital credentials that go where you go. Digital Credentials Commons builds open-source software and helps shape open standards for verifiable credentials.">
+<meta name="theme-color" content="#293F7D">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Digital Credentials Commons">
+<meta property="og:description" content="Digital credentials that go where you go. Portable, private and instantly verifiable.">
+<meta property="og:url" content="https://dccommons.org/">
+<meta property="og:image" content="https://dccommons.org/android-chrome-512x512.png">
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:       #FFFFFF;   /* white background */
-    --bg-2:     #F5F5F3;   /* subtle lifted panel */
-    --text:     #2B2B2E;   /* dark grey primary text */
-    --text-dim: #6B6B70;   /* muted grey secondary text */
-    --seal:     #5E8C6A;   /* sage accent */
-    --seal-lt:  #7BA687;
-    --verify:   #2F6B52;   /* verified pine green */
-    --btn-text: #FFFFFF;   /* white text on accent buttons */
-    --line:     rgba(0,0,0,0.12);
-    --line-strong: rgba(0,0,0,0.22);
-  }
-
-  *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
-  }
-
-  a{ color:inherit; }
-  a:focus-visible, button:focus-visible, input:focus-visible{
-    outline:2px solid var(--seal-lt);
-    outline-offset:3px;
-  }
-
-  /* ---------- background lattice (the Commons network) ---------- */
-  .lattice{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    opacity:0.7;
-    pointer-events:none;
-    transform:translateY(60px) scale(1.08);
-    transform-origin:center top;
-  }
-
-  /* ---------- layout shell ---------- */
-  .page{
-    position:relative;
-    z-index:1;
-    width:100%;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    padding:0 32px;
-    margin:0 auto;
-  }
-
-  header.top{
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    padding:24px 0 24px;
-  }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:16px;
-  }
-  .brand svg{ width:44px; height:44px; }
-  .wordmark{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:2px;
-  }
-  .mark-dcc{
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:500;
-    font-size:18px;
-    letter-spacing:0.04em;
-    color:var(--text);
-  }
-  .mark-name{
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:500;
-    font-size:14px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--seal);
-    margin-bottom:12px;
-  }
-  .mark-commons{ color:#D4A228; }
-
-  /* ---------- hero ---------- */
-  main{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    padding:4px 0 48px;
-  }
-
-  h1{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-size:clamp(2.2rem, 5vw, 3.6rem);
-    line-height:1.05;
-    letter-spacing:-0.01em;
-    margin:0 0 32px;
-    max-width:14ch;
-    opacity:0;
-    animation:rise 0.9s ease-out 0.15s forwards;
-  }
-  h1 em{
-    font-style:italic;
-    font-weight:500;
-    color:var(--seal-lt);
-  }
-
-  .lede{
-    opacity:0;
-    animation:rise 0.9s ease-out 0.28s forwards;
-  }
-  .lede p{
-    font-size:1.02rem;
-    line-height:1.55;
-    color:var(--text-dim);
-    margin:0 0 22px;
-  }
-  .lede p a{
-    color:var(--seal);
-    text-decoration:underline;
-    text-decoration-color:var(--seal);
-    text-underline-offset:2px;
-  }
-  .lede p a:hover{ text-decoration-color:var(--seal-lt); color:var(--seal-lt); }
-  .lede p:last-child{ margin-bottom:0; }
-  .lede strong{ color:var(--text); font-weight:600; }
-
-  /* ---------- signup ---------- */
-  .signup{
-    margin-top:48px;
-    opacity:0;
-    animation:rise 0.9s ease-out 0.4s forwards;
-  }
-  .signup-box{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    align-items:center;
-  }
-  .cta{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    background:var(--seal);
-    color:var(--btn-text);
-    font-family:'Inter', sans-serif;
-    font-weight:600;
-    font-size:15px;
-    padding:14px 22px;
-    border-radius:6px;
-    text-decoration:none;
-    border:1px solid var(--seal);
-    transition:transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-    box-shadow:0 0 0 0 rgba(94,140,106,0);
-  }
-  .cta:hover{
-    background:var(--seal-lt);
-    transform:translateY(-1px);
-    box-shadow:0 8px 20px -8px rgba(94,140,106,0.6);
-  }
-  .cta svg{ width:16px; height:16px; transition:transform 0.15s ease; }
-  .cta:hover svg{ transform:translateX(3px); }
-
-  .fine{
-    margin-top:14px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    color:var(--text-dim);
-    letter-spacing:0.02em;
-  }
-
-  .link-row{
-    margin-top:36px;
-    display:flex;
-    gap:20px;
-    justify-content:flex-start;
-    flex-wrap:wrap;
-  }
-  .link-row a{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:14px;
-    letter-spacing:0.04em;
-    color:var(--seal);
-    text-decoration:underline;
-    text-decoration-color:var(--seal);
-    text-underline-offset:2px;
-  }
-  .link-row a:hover{ color:var(--seal-lt); text-decoration-color:var(--seal-lt); }
-
-  /* ---------- footer ---------- */
-  footer{
-    border-top:1px solid var(--line);
-    padding:16px 0 20px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px 24px;
-    justify-content:space-between;
-    align-items:baseline;
-  }
-  footer p{
-    margin:0;
-    font-size:13px;
-    color:var(--text-dim);
-    line-height:1.6;
-  }
-  footer .mark{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.08em;
-    color:var(--text-dim);
-    text-transform:uppercase;
-  }
-
-  @keyframes rise{
-    from{ opacity:0; transform:translateY(10px); }
-    to{ opacity:1; transform:translateY(0); }
-  }
-
-  @media (max-width:560px){
-    .page{ padding:0 20px; }
-    header.top{ flex-direction:column; align-items:flex-start; gap:6px; padding-top:24px; }
-    .eyebrow-top{ text-align:left; }
-    main{ padding:44px 0 36px; }
-    footer{ flex-direction:column; }
-  }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
-<svg class="lattice" id="latticeSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+<div id="page" data-sample="off">
 
-<div class="page">
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo logo-wide" href="#top"><img src="assets/img/dcc-lockup-one-line.svg" alt="Digital Credentials Commons" width="270" height="40"></a>
+    <a class="logo logo-narrow" href="#top"><img src="assets/img/dcc-lockup-horizontal.svg" alt="Digital Credentials Commons" width="157" height="44"></a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#how">How it works</a>
+      <a href="#work">Our work</a>
+      <a href="#about">About</a>
+      <a class="nav-contact" href="#contact">Get in touch</a>
+    </nav>
+  </div>
+</header>
 
-  <header class="top">
-    <div class="brand">
-      <svg width="44" height="44" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <circle cx="20" cy="20" r="18.5" stroke="var(--seal-lt)" stroke-width="1"/>
-        <circle cx="20" cy="20" r="13.5" stroke="#D4A228" stroke-width="1" stroke-dasharray="2 3"/>
-        <path d="M13 20.5L17.5 25L27 14" stroke="var(--verify)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div class="wordmark"><span class="mark-dcc">DCC</span><span class="mark-name">Digital Credentials <span class="mark-commons">Commons</span></span></div>
-    </div>
-  </header>
+<main id="top">
 
-  <main>
-    <h1>Help build the Commons for <em>trusted credentials</em>.</h1>
-
-    <div class="lede">
-      <p>Founded in 2018 at MIT Open Learning by leading universities across North America, Europe, and Asia, 
-        <a href="https://dcconsortium.org/" target="_blank" rel="noopener">Digital Credentials Consortium (DCC)</a> 
-        has built a trusted, shared infrastructure for issuing, storing, displaying, and verifying digital credentials. 
-        <a href="https://www.strada.org/news-insights/strada-announced-as-new-host-for-digital-credentials-consortium" target="_blank">Effective immediately</a>, DCC will have a new name, Digital Credentials Commons and will be hosted by <a href="https://www.strada.org/" target="_blank" rel="noopener">Strada Education Foundation</a>.</p>
-      
-      <p>Digital Credentials Commons will build upon the infrastructure incubated at MIT Open Learning to scale an open-source and open standards-based ecosystem in which learners fully own, control, and can use verifiable digital records of their skills and achievements. The name change reflects DCC’s commitment to scaling open standards and technologies in close collaboration with a broad network of partners contributing to the Commons.</p>
-      
-      <p>At the center of this work is a simple goal: <strong>empowering learners to have real access to and control over their credential data</strong>, 
-        so they can store and share their achievements wherever opportunity takes them.</p>
-      
-      <p>As a Commons, we're connecting institutions, organizations, platforms, and companies across the digital credentialing ecosystem. 
-        Together, we will scale our services and continue to advance the understanding and use of privacy-enhanced, verifiable, data-rich digital credentials 
-        through open source technology development and leadership, research, and advocacy.</p>
-      
-      <p>Educators, technologists, researchers, policymakers, and lifelong learners, help us shape what comes next. All are welcome.</p>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <h1>Digital credentials that go where you go</h1>
+      <p class="tagline">Portable, private and instantly verifiable.</p>
+      <p class="lead">A diploma, certificate, license or badge can now carry its own proof, along with rich detail about the skills behind it. Share it, and anyone can check that it&rsquo;s real.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#try" data-feature="sample">Get a sample credential</a>
+        <a class="btn btn-secondary hero-contact" href="#contact">Get in touch</a>
+      </div>
+      <p class="lineage">Formerly the Digital Credentials Consortium at MIT, now hosted by Strada Education Foundation.</p>
     </div>
 
-    <div class="signup">
-      <div class="signup-box">
-        <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLScGmIDSf2hn2sGUJMrhdv0X4PsGpQ7iLbobW6fB2PH7TUc_RA/viewform" target="_blank" rel="noopener" id="signupLink">
-          Get Involved
-          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+    <figure class="demo" aria-label="Example: a digital credential being checked">
+      <span class="demo-label">Example</span>
+      <div class="vc">
+        <svg class="vc-seal" viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <path id="sealTop" d="M60,106 a46,46 0 1,1 0,-92 a46,46 0 1,1 0,92"/>
+            <path id="sealBottom" d="M7,60 a53,53 0 0,0 106,0"/>
+          </defs>
+          <circle class="line" cx="60" cy="60" r="58" stroke-width="2.4"/>
+          <circle class="line" cx="60" cy="60" r="55" stroke-width=".8"/>
+          <circle class="line" cx="60" cy="60" r="39.5" stroke-width="1.2"/>
+          <text font-size="8.6"><textPath href="#sealTop" startOffset="54.5" textLength="180" lengthAdjust="spacing">RIVERBEND COMMUNITY COLLEGE</textPath></text>
+          <text font-size="8.6"><textPath href="#sealBottom" startOffset="50%" text-anchor="middle">EST. 1968</textPath></text>
+          <circle class="ink" cx="25" cy="95" r="1.6"/>
+          <circle class="ink" cx="95" cy="95" r="1.6"/>
+          <path class="ink" d="M40 52 Q50 46 60 51 Q70 46 80 52 L80 67 Q70 61 60 66 Q50 61 40 67 Z"/>
+          <path class="gap" d="M60 51 V66" stroke-width="1.6"/>
+          <path class="line" d="M38 75 q5.5 -4.5 11 0 t11 0 t11 0 t11 0" stroke-width="2.2" stroke-linecap="round"/>
+          <path class="line" d="M42 82 q4.5 -3.6 9 0 t9 0 t9 0 t9 0" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <div class="vc-issuer">Riverbend Community College</div>
+        <div class="vc-title">Certificate in Data Analysis</div>
+        <dl class="vc-meta">
+          <div><dt>Issued to</dt><dd>Maya Torres</dd></div>
+          <div><dt>Issued</dt><dd>May 15, 2026</dd></div>
+        </dl>
+        <div class="vc-sig" aria-hidden="true">Digital signature&ensp;z3FXQjecWufY46yg5abdVZsXqLhxhueuSoZgNSARiKBk9cz</div>
+      </div>
+      <div class="verify" id="verify">
+        <p class="verify-status" id="verifyStatus" aria-live="polite">Checking&hellip;</p>
+        <ul class="verify-list">
+          <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="10"/><path d="M6.6 11.4l3 3 5.8-6.2"/></svg></span>Issued by Riverbend Community College</li>
+          <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="10"/><path d="M6.6 11.4l3 3 5.8-6.2"/></svg></span>Hasn&rsquo;t been tampered with</li>
+          <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="10"/><path d="M6.6 11.4l3 3 5.8-6.2"/></svg></span>Still valid</li>
+        </ul>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec">
+      <div class="sec-head"><h2>How it works</h2></div>
+      <div class="sec-body">
+        <p>A digital credential is a record of something you&rsquo;ve accomplished, such as a degree, a completed course or a job you&rsquo;ve held. The organization behind it signs it digitally, and that signature stays attached to the record.</p>
+        <ol class="steps">
+          <li><strong>You receive it.</strong><span>A school, training program or employer issues the credential to you.</span></li>
+          <li><strong>You keep it.</strong><span>It goes into a digital wallet with your other credentials, and you decide who sees it.</span></li>
+          <li><strong>You share it.</strong><span>Send it to an employer, a school or anyone else. They can check it themselves, on the spot.</span></li>
+        </ol>
+        <p>That&rsquo;s why it&rsquo;s called a verifiable credential. Because it&rsquo;s built on open standards, it can be checked anywhere, not only where it was issued.</p>
+
+        <div class="try" id="try" data-feature="sample">
+          <div class="try-text">
+            <h3>Try it yourself</h3>
+            <p>The quickest way to understand a digital credential is to hold one. Tell us your name and email, and we&rsquo;ll send you a sample credential to add to Learner Credential Wallet on your phone.</p>
+            <form class="sample-form" id="sampleForm" novalidate>
+              <input type="text" id="sample-name" name="name" autocomplete="name" placeholder="Your name" required aria-label="Your name">
+              <input type="email" id="sample-email" name="email" autocomplete="email" placeholder="you@example.org" required aria-label="Your email">
+              <button type="submit" class="btn btn-primary">Send me a sample credential</button>
+            </form>
+            <p class="status" id="sampleStatus" aria-live="polite"></p>
+            <p class="fine">This is a demo. The sample credential is for trying things out and doesn&rsquo;t record a real achievement.</p>
+          </div>
+          <figure class="badge" aria-label="The sample credential you'll receive">
+            <img src="assets/img/dcc-mark.svg" alt="" width="84" height="84">
+            <span class="badge-kind">Sample credential</span>
+            <span class="badge-title">LCW Experience Badge</span>
+            <span class="badge-issuer">Issued by Digital Credentials Commons</span>
+          </figure>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="link-row">
-      <a href="https://wiki.dcconsortium.org/" target="_blank" rel="noopener">DCC Knowledge Base</a>
-      <a href="https://badging.dcconsortium.org/lcw-experience-badge" target="_blank" rel="noopener">LCW Experience Badge</a>
-      <a href="https://github.com/digitalcredentials" target="_blank" rel="noopener">DCC GitHub</a>
+<section id="work">
+  <div class="wrap">
+    <div class="sec">
+      <div class="sec-head"><h2>Our work</h2></div>
+      <div class="sec-body">
+        <p class="lead">At the center of our work is a simple goal: empowering learners to have real access to and control over their credential data, so they can store and share their achievements wherever opportunity takes them.</p>
+        <p>Digital Credentials Commons brings together the people and organizations working toward that goal and helps advance understanding and adoption of digital credentials. If you&rsquo;re new to this, we&rsquo;ll help you figure out where to start.</p>
+
+        <div class="part">
+          <h3>We help shape the standards</h3>
+          <p>Standards are shaped by whoever takes part. We take part on behalf of learners, the organizations that serve them and the vendors that build for them, in the <a href="https://w3c-ccg.github.io/vc-ed/" target="_blank" rel="noopener">W3C Verifiable Credentials for Education Task Force</a>, the <a href="https://www.w3.org/community/credentials/" target="_blank" rel="noopener">W3C Credentials Community Group</a> and <a href="https://www.1edtech.org/standards/open-badges" target="_blank" rel="noopener">1EdTech&rsquo;s work on Open Badges</a>.</p>
+        </div>
+
+        <div class="part">
+          <h3>We build open-source software</h3>
+          <p>Everything we build is freely available and open source. You&rsquo;ll find all of it at <a href="https://github.com/digitalcredentials" target="_blank" rel="noopener">github.com/digitalcredentials</a>.</p>
+          <div class="tools">
+            <div class="tool">
+              <span class="tool-name">Learner Credential Wallet</span>
+              <p>A wallet for keeping and sharing your credentials on your phone, for iOS and Android. We&rsquo;re also building a new web version. <a href="#contact">Get in touch</a> to hear more about it.</p>
+              <div class="tool-links"><a href="https://lcw.app/" target="_blank" rel="noopener">lcw.app</a></div>
+            </div>
+            <div class="tool">
+              <span class="tool-name">VerifierPlus</span>
+              <p>A free website for checking whether a credential is real, with no account needed.</p>
+              <div class="tool-links"><a href="https://verifierplus.org" target="_blank" rel="noopener">verifierplus.org</a></div>
+            </div>
+            <div class="tool">
+              <span class="tool-name">Issuing service and libraries</span>
+              <p>Tools for issuing credentials from your own systems, either as a standalone service or built into software you already run.</p>
+            </div>
+            <div class="tool">
+              <span class="tool-name">Wallet Attached Storage</span>
+              <p>A secure, API-based way to store and share digital credentials. We wrote the specification, now hosted by the W3C Credentials Community Group, and the new web version of Learner Credential Wallet is being built on it.</p>
+              <div class="tool-links"><a href="https://w3c-ccg.github.io/wallet-attached-storage-spec/" target="_blank" rel="noopener">Specification</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="part">
+          <h3>We run shared services</h3>
+          <p>Today that means the Issuer Identity Registry, which helps anyone checking a credential confirm who issued it. Learner Credential Wallet and VerifierPlus check it automatically.</p>
+        </div>
+
+        <div class="part">
+          <h3>Beyond education</h3>
+          <p>Verifiable credentials began as a way for people to carry records of what they&rsquo;d learned, but the approach works for anything that matters: a professional license, an employment record, a permit. In California, for example, the DMV&rsquo;s digital driver&rsquo;s license is also available as a verifiable credential. We focus on learning and work because that&rsquo;s where our community is. The standards we help shape, and the software and services we develop, apply far more widely.</p>
+        </div>
+      </div>
     </div>
-  </main>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec">
+      <div class="sec-head"><h2>About</h2></div>
+      <div class="sec-body">
+        <p>The Digital Credentials Consortium was founded in 2018 at MIT Open Learning by universities across North America, Europe and Asia. Together they built shared infrastructure for issuing, keeping and checking digital credentials.</p>
+        <p>Today it continues as the Digital Credentials Commons, hosted by <a href="https://www.strada.org/" target="_blank" rel="noopener">Strada Education Foundation</a>, and works with a growing network of partners across education, employment and technology.</p>
+        <p>A commons is something a community builds and looks after together, and that everyone can have access to. Our software, research and standards work are open to all, and anyone can report a problem, contribute code or join the open W3C groups we take part in. We don&rsquo;t sell credentials. We build open tools that schools, employers, governments and vendors can all use and build on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec">
+      <div class="sec-head"><h2>Get in touch</h2></div>
+      <div class="sec-body">
+        <p>Tell us who you are and what you&rsquo;re interested in. We&rsquo;ll follow up with news, resources and, if you&rsquo;d like, a time to talk.</p>
+        <form class="contact" id="contactForm" novalidate>
+          <div class="field">
+            <label for="f-name">Name <span class="req">(required)</span></label>
+            <input type="text" id="f-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email <span class="req">(required)</span></label>
+            <input type="email" id="f-email" name="email" autocomplete="email" required>
+          </div>
+          <fieldset class="field" id="f-org-group">
+            <legend>How would you describe your organization? <span class="req">(choose any)</span></legend>
+            <div class="checks">
+              <label><input type="checkbox" id="f-org-1" name="org" value="Educational Institution"> Educational institution</label>
+              <label><input type="checkbox" id="f-org-2" name="org" value="Local, State, or Other Government"> Local, state or other government</label>
+              <label><input type="checkbox" id="f-org-3" name="org" value="Employer / HR Systems"> Employer or HR systems</label>
+              <label><input type="checkbox" id="f-org-4" name="org" value="Credentialing Organization"> Credentialing organization</label>
+              <label><input type="checkbox" id="f-org-5" name="org" value="Career Navigator"> Career navigator</label>
+              <label><input type="checkbox" id="f-org-6" name="org" value="Technology Provider"> Technology provider</label>
+              <label><input type="checkbox" id="f-org-7" name="org" value="Service Provider"> Service provider</label>
+              <label><input type="checkbox" id="f-org-8" name="org" value="Standards Organization"> Standards organization</label>
+              <label><input type="checkbox" id="f-org-9" name="org" value="Funder"> Funder</label>
+              <label><input type="checkbox" id="f-org-10" name="org" value="None / Individual / Self"> Just me, as an individual</label>
+              <label><input type="checkbox" id="f-org-other" name="org" value="__other_option__" data-other="f-org-other-text"> Other</label>
+            </div>
+            <input type="text" id="f-org-other-text" class="other-text" name="orgOther" aria-label="Describe your organization" placeholder="Describe your organization" hidden>
+          </fieldset>
+          <fieldset class="field" id="f-int-group">
+            <legend>What are you interested in? <span class="req">(choose any)</span></legend>
+            <div class="checks">
+              <label><input type="checkbox" id="f-int-1" name="interest" value="Technology and Product"> Technology and product</label>
+              <label><input type="checkbox" id="f-int-2" name="interest" value="Partnership and Ecosystem"> Partnership and ecosystem</label>
+              <label><input type="checkbox" id="f-int-3" name="interest" value="Docs, Videos, and Public Goods"> Docs, videos and public goods</label>
+              <label><input type="checkbox" id="f-int-4" name="interest" value="Newsletters and Updates"> News and updates</label>
+              <label><input type="checkbox" id="f-int-5" name="interest" value="Scheduling a meeting or event meetup"> Meeting up, at an event or online</label>
+              <label><input type="checkbox" id="f-int-other" name="interest" value="__other_option__" data-other="f-int-other-text"> Other</label>
+            </div>
+            <input type="text" id="f-int-other-text" class="other-text" name="intOther" aria-label="Describe your interest" placeholder="Describe your interest" hidden>
+          </fieldset>
+          <div class="field">
+            <label for="f-note">Anything else you&rsquo;d like us to know?</label>
+            <textarea id="f-note" name="note"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Leave this empty</label>
+            <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="form-foot">
+            <button type="submit" class="btn btn-primary">Send</button>
+            <span class="privacy">We&rsquo;ll use this only to follow up with you.</span>
+          </div>
+          <p class="status" id="contactStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; 2026 Digital Credentials Commons. Hosted by Strada Education Foundation.</span>
+    <nav aria-label="Elsewhere">
+      <a href="https://github.com/digitalcredentials" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://blog.dccommons.org" target="_blank" rel="noopener">Blog</a>
+      <a href="https://www.strada.org/" target="_blank" rel="noopener">Strada Education Foundation</a>
+    </nav>
+  </div>
+</footer>
 
 </div>
 
-<script>
-  // Signature background: a sparse lattice of nodes + connecting lines,
-  // evoking a network of independently-issued, mutually-verifiable credentials.
-  (function(){
-    const svg = document.getElementById('latticeSvg');
-    const ns = 'http://www.w3.org/2000/svg';
-    function build(){
-      svg.innerHTML = '';
-      const w = window.innerWidth, h = window.innerHeight;
-      svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-
-      const cols = Math.max(5, Math.round(w / 170));
-      const rows = Math.max(4, Math.round(h / 170));
-      const pts = [];
-      for(let i=0;i<cols;i++){
-        for(let j=0;j<rows;j++){
-          const x = (i + 0.5) * (w/cols) + (Math.random()-0.5)*40;
-          const y = (j + 0.5) * (h/rows) + (Math.random()-0.5)*40;
-          pts.push({x,y});
-        }
-      }
-      // randomly choose which points become visible dots
-      const dots = pts.filter(() => Math.random() > 0.45);
-      // connect each dot to its nearest dot neighbors, so every visible dot has a line
-      dots.forEach((p, idx) => {
-        const dists = dots
-          .map((q, qi) => ({qi, d: Math.hypot(p.x-q.x, p.y-q.y)}))
-          .filter(o => o.qi !== idx)
-          .sort((a,b)=>a.d-b.d)
-          .slice(0, 2);
-        dists.forEach(o => {
-          const q = dots[o.qi];
-          const line = document.createElementNS(ns, 'line');
-          line.setAttribute('x1', p.x); line.setAttribute('y1', p.y);
-          line.setAttribute('x2', q.x); line.setAttribute('y2', q.y);
-          line.setAttribute('stroke', 'rgba(43,43,46,0.08)');
-          line.setAttribute('stroke-width', '1');
-          svg.appendChild(line);
-        });
-      });
-      dots.forEach(p => {
-        const c = document.createElementNS(ns, 'circle');
-        c.setAttribute('cx', p.x); c.setAttribute('cy', p.y);
-        c.setAttribute('r', Math.random() > 0.85 ? 3.4 : 2.2);
-        c.setAttribute('fill', Math.random() > 0.9 ? 'rgba(212,162,40,0.6)' : 'rgba(212,162,40,0.28)');
-        svg.appendChild(c);
-      });
-    }
-    build();
-    let t;
-    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 200); });
-  })();
-</script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>

@@ -32,7 +32,10 @@ function setStatus(el, msg, kind){ el.textContent = msg; el.className = "status"
 
 document.querySelectorAll("input[data-other]").forEach(function(box){
   var text = document.getElementById(box.dataset.other);
-  box.addEventListener("change", function(){ text.hidden = !box.checked; if (box.checked) text.focus(); });
+  box.addEventListener("change", function(){
+    text.hidden = !box.checked;
+    if (box.checked) text.focus(); else text.value = "";
+  });
 });
 
 document.getElementById("sampleForm").addEventListener("submit", function(e){
@@ -51,21 +54,22 @@ document.getElementById("sampleForm").addEventListener("submit", function(e){
 document.getElementById("contactForm").addEventListener("submit", function(e){
   e.preventDefault();
   var f = e.target, status = document.getElementById("contactStatus");
-  if (f.website.value) return;
+  if (f.trap.value) return;
   var name = f.name.value.trim(), email = f.email.value.trim();
   if (!name) { setStatus(status, "Add your name so we know who to reply to.", "err"); f.name.focus(); return; }
   if (!EMAIL_RE.test(email)) { setStatus(status, "Enter an email address, like name@example.org.", "err"); f.email.focus(); return; }
-  if (!GOOGLE_FORM.action) {
+  var E = GOOGLE_FORM.entries;
+  if (!GOOGLE_FORM.action || !E.name || !E.email || !E.org || !E.interest || !E.note) {
     setStatus(status, "Draft: the form isn't connected yet. On the live site, this sends your details to the team.", "ok");
     return;
   }
-  var E = GOOGLE_FORM.entries, data = new URLSearchParams();
+  var data = new URLSearchParams();
   data.append(E.name, name);
   data.append(E.email, email);
   f.querySelectorAll('input[name="org"]:checked').forEach(function(c){ data.append(E.org, c.value); });
-  if (f.orgOther.value.trim()) data.append(E.org + ".other_option_response", f.orgOther.value.trim());
+  if (f["f-org-other"].checked && f.orgOther.value.trim()) data.append(E.org + ".other_option_response", f.orgOther.value.trim());
   f.querySelectorAll('input[name="interest"]:checked').forEach(function(c){ data.append(E.interest, c.value); });
-  if (f.intOther.value.trim()) data.append(E.interest + ".other_option_response", f.intOther.value.trim());
+  if (f["f-int-other"].checked && f.intOther.value.trim()) data.append(E.interest + ".other_option_response", f.intOther.value.trim());
   if (f.note.value.trim()) data.append(E.note, f.note.value.trim());
   var src = new URLSearchParams(location.search).get("src");
   if (src && E.source) data.append(E.source, src);

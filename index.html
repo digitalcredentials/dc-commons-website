@@ -27,8 +27,12 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="logo logo-wide" href="#top"><img src="assets/img/dcc-lockup-one-line.svg" alt="Digital Credentials Commons" width="270" height="40"></a>
-    <a class="logo logo-narrow" href="#top"><img src="assets/img/dcc-lockup-horizontal.svg" alt="Digital Credentials Commons" width="157" height="44"></a>
+    <a class="logo" href="#top">
+      <picture>
+        <source media="(max-width: 760px)" srcset="assets/img/dcc-lockup-horizontal.svg">
+        <img src="assets/img/dcc-lockup-one-line.svg" alt="Digital Credentials Commons" width="270" height="40">
+      </picture>
+    </a>
     <nav class="site-nav" aria-label="Sections">
       <a href="#how">How it works</a>
       <a href="#work">Our work</a>
@@ -110,7 +114,7 @@
           <div class="try-text">
             <h3>Try it yourself</h3>
             <p>The quickest way to understand a digital credential is to hold one. Tell us your name and email, and we&rsquo;ll send you a sample credential to add to Learner Credential Wallet on your phone.</p>
-            <form class="sample-form" id="sampleForm" novalidate>
+            <form class="sample-form" id="sampleForm" method="post" novalidate>
               <input type="text" id="sample-name" name="name" autocomplete="name" placeholder="Your name" required aria-label="Your name">
               <input type="email" id="sample-email" name="email" autocomplete="email" placeholder="you@example.org" required aria-label="Your email">
               <button type="submit" class="btn btn-primary">Send me a sample credential</button>
@@ -119,7 +123,7 @@
             <p class="fine">This is a demo. The sample credential is for trying things out and doesn&rsquo;t record a real achievement.</p>
           </div>
           <figure class="badge" aria-label="The sample credential you'll receive">
-            <img src="assets/img/dcc-mark.svg" alt="" width="84" height="84">
+            <img src="assets/img/dcc-mark.svg" alt="" width="84" height="84" loading="lazy">
             <span class="badge-kind">Sample credential</span>
             <span class="badge-title">LCW Experience Badge</span>
             <span class="badge-issuer">Issued by Digital Credentials Commons</span>
@@ -202,7 +206,7 @@
       <div class="sec-head"><h2>Get in touch</h2></div>
       <div class="sec-body">
         <p>Tell us who you are and what you&rsquo;re interested in. We&rsquo;ll follow up with news, resources and, if you&rsquo;d like, a time to talk.</p>
-        <form class="contact" id="contactForm" novalidate>
+        <form class="contact" id="contactForm" method="post" novalidate>
           <div class="field">
             <label for="f-name">Name <span class="req">(required)</span></label>
             <input type="text" id="f-name" name="name" autocomplete="name" required>
@@ -245,8 +249,8 @@
             <textarea id="f-note" name="note"></textarea>
           </div>
           <div class="hp" aria-hidden="true">
-            <label for="f-website">Leave this empty</label>
-            <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+            <label for="f-trap">Leave this empty</label>
+            <input type="text" id="f-trap" name="trap" tabindex="-1" autocomplete="off">
           </div>
           <div class="form-foot">
             <button type="submit" class="btn btn-primary">Send</button>

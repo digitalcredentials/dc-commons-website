@@ -77,32 +77,32 @@
           <thead><tr><th scope="col">Standard</th><th scope="col">Version</th><th scope="col">Status</th><th scope="col">Notes</th></tr></thead>
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Data model</th></tr>
-            <tr id="clr-2-0">
-              <td data-label="Standard"><a href="https://www.imsglobal.org/spec/clr/v2p0/" target="_blank" rel="noopener">Comprehensive Learner Record</a> (CLR) <span class="publisher">1EdTech</span></td>
-              <td data-label="Version">2.0</td>
-              <td data-label="Status"><span class="pill pill-emerging">Emerging</span></td>
-              <td data-label="Notes"></td>
-            </tr>
             <tr id="ob-3-0">
-              <td data-label="Standard"><a href="https://www.imsglobal.org/spec/ob/v3p0/" target="_blank" rel="noopener">Open Badges</a> (OB) <span class="publisher">1EdTech</span></td>
+              <td data-label="Standard"><a href="https://www.imsglobal.org/spec/ob/v3p0/" target="_blank" rel="noopener">Open Badges</a> (OB) <a class="permalink" href="#ob-3-0" aria-label="Link to this row: Open Badges 3.0">#</a> <span class="publisher">1EdTech</span></td>
               <td data-label="Version">3.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Versatile VC schema for learning, employment, skills, and other achievements.</td>
+            </tr>
+            <tr id="clr-2-0">
+              <td data-label="Standard"><a href="https://www.imsglobal.org/spec/clr/v2p0/" target="_blank" rel="noopener">Comprehensive Learner Record</a> (CLR) <a class="permalink" href="#clr-2-0" aria-label="Link to this row: Comprehensive Learner Record 2.0">#</a> <span class="publisher">1EdTech</span></td>
+              <td data-label="Version">2.0</td>
+              <td data-label="Status"><span class="pill pill-emerging">Emerging</span></td>
+              <td data-label="Notes">Bundles of individual OBs wrapped in an outer credential, with optional associations. Use cases include formal academic transcripts.</td>
             </tr>
             <tr id="hr-open-tcp-4-6">
-              <td data-label="Standard"><a href="https://www.hropenstandards.org/standards" target="_blank" rel="noopener">Trusted Career Profile</a> (TCP) <span class="publisher">HR Open Standards</span></td>
+              <td data-label="Standard"><a href="https://www.hropenstandards.org/standards" target="_blank" rel="noopener">Trusted Career Profile</a> (TCP) <a class="permalink" href="#hr-open-tcp-4-6" aria-label="Link to this row: Trusted Career Profile 4.6">#</a> <span class="publisher">HR Open</span></td>
               <td data-label="Version">4.6</td>
               <td data-label="Status"><span class="pill pill-emerging">Emerging</span></td>
-              <td data-label="Notes">4.6 is a candidate release; TCP first shipped in 4.5.</td>
+              <td data-label="Notes">TCP is an emerging part of the HR Open family of data models, a resume-like representation of an individual&rsquo;s experience. It can include skills and embed other credentials as evidence of experience. TCPs can be signed as VCs.</td>
             </tr>
             <tr id="vcdm-2-0">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-data-model-2.0/" target="_blank" rel="noopener">Verifiable Credentials Data Model</a> (VCDM) <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-data-model-2.0/" target="_blank" rel="noopener">Verifiable Credentials Data Model</a> (VCDM) <a class="permalink" href="#vcdm-2-0" aria-label="Link to this row: Verifiable Credentials Data Model 2.0">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">2.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Current final version of the base envelope for many credential schemas.</td>
             </tr>
             <tr id="vcdm-1-1">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-data-model-1.1/" target="_blank" rel="noopener">Verifiable Credentials Data Model</a> (VCDM) <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-data-model-1.1/" target="_blank" rel="noopener">Verifiable Credentials Data Model</a> (VCDM) <a class="permalink" href="#vcdm-1-1" aria-label="Link to this row: Verifiable Credentials Data Model 1.1">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">1.1</td>
               <td data-label="Status"><span class="pill pill-deprecated">Deprecated</span></td>
               <td data-label="Notes">Still supported for verification. New work should use VCDM 2.0.</td>
@@ -111,133 +111,145 @@
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Proofs and signatures</th></tr>
             <tr id="vc-di-ecdsa-1-0">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-di-ecdsa/" target="_blank" rel="noopener">Data Integrity ECDSA Cryptosuites</a> <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-di-ecdsa/" target="_blank" rel="noopener">Data Integrity ECDSA Cryptosuites</a> <a class="permalink" href="#vc-di-ecdsa-1-0" aria-label="Link to this row: Data Integrity ECDSA Cryptosuites 1.0">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes">We use <code>ecdsa-rdfc-2019</code>.</td>
+              <td data-label="Notes">We use <code>ecdsa-rdfc-2019</code>. NIST-approved.</td>
             </tr>
             <tr id="vc-di-eddsa-1-0">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-di-eddsa/" target="_blank" rel="noopener">Data Integrity EdDSA Cryptosuites</a> <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-di-eddsa/" target="_blank" rel="noopener">Data Integrity EdDSA Cryptosuites</a> <a class="permalink" href="#vc-di-eddsa-1-0" aria-label="Link to this row: Data Integrity EdDSA Cryptosuites 1.0">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
               <td data-label="Notes">We use <code>eddsa-rdfc-2022</code>.</td>
             </tr>
             <tr id="ed25519-signature-2020">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-di-eddsa/#the-ed25519signature2020-suite" target="_blank" rel="noopener">Ed25519Signature2020</a> <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-di-eddsa/#the-ed25519signature2020-suite" target="_blank" rel="noopener">Ed25519Signature2020</a> <a class="permalink" href="#ed25519-signature-2020" aria-label="Link to this row: Ed25519Signature2020">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version"></td>
               <td data-label="Status"><span class="pill pill-deprecated">Deprecated</span></td>
               <td data-label="Notes">Legacy suite, still verified and signed. New work should use <code>eddsa-rdfc-2022</code>.</td>
             </tr>
             <tr id="vc-data-integrity-1-0">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-data-integrity/" target="_blank" rel="noopener">Verifiable Credential Data Integrity</a> <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-data-integrity/" target="_blank" rel="noopener">Verifiable Credential Data Integrity</a> <a class="permalink" href="#vc-data-integrity-1-0" aria-label="Link to this row: Verifiable Credential Data Integrity 1.0">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Parent vocabulary for a family of linked data proofs for credentials and presentations.</td>
             </tr>
           </tbody>
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Identifiers</th></tr>
+            <tr id="did-1-0">
+              <td data-label="Standard"><a href="https://www.w3.org/TR/did-1.0/" target="_blank" rel="noopener">Decentralized Identifiers</a> (DIDs) <a class="permalink" href="#did-1-0" aria-label="Link to this row: Decentralized Identifiers 1.0">#</a> <span class="publisher">W3C</span></td>
+              <td data-label="Version">1.0</td>
+              <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
+              <td data-label="Notes">Core syntax and data model for DIDs and DID documents, shared by the DID methods below.</td>
+            </tr>
             <tr id="cid-1-0">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/cid-1.0/" target="_blank" rel="noopener">Controlled Identifiers</a> (CID) <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/cid-1.0/" target="_blank" rel="noopener">Controlled Identifiers</a> (CID) <a class="permalink" href="#cid-1-0" aria-label="Link to this row: Controlled Identifiers 1.0">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
               <td data-label="Notes">Defines the Multikey verification methods our DIDs use.</td>
             </tr>
             <tr id="did-key-0-9">
-              <td data-label="Standard"><a href="https://w3c-ccg.github.io/did-key-spec/" target="_blank" rel="noopener">The did:key Method</a> <span class="publisher">W3C CCG</span></td>
+              <td data-label="Standard"><a href="https://w3c-ccg.github.io/did-key-spec/" target="_blank" rel="noopener">The did:key Method</a> <a class="permalink" href="#did-key-0-9" aria-label="Link to this row: The did:key Method 0.9">#</a> <span class="publisher">W3C CCG</span></td>
               <td data-label="Version">0.9</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Static approach to encoding a cryptographic key as an issuer identifier.</td>
             </tr>
             <tr id="did-web">
-              <td data-label="Standard"><a href="https://w3c-ccg.github.io/did-method-web/" target="_blank" rel="noopener">did:web Method</a> <span class="publisher">W3C CCG</span></td>
+              <td data-label="Standard"><a href="https://w3c-ccg.github.io/did-method-web/" target="_blank" rel="noopener">did:web Method</a> <a class="permalink" href="#did-web" aria-label="Link to this row: did:web Method">#</a> <span class="publisher">W3C CCG</span></td>
               <td data-label="Version"></td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Ties an issuer&rsquo;s identifier to a web domain it controls, where its DID document is hosted.</td>
             </tr>
             <tr id="did-webvh-1-0">
-              <td data-label="Standard"><a href="https://identity.foundation/didwebvh/v1.0/" target="_blank" rel="noopener">The did:webvh DID Method</a> <span class="publisher">DIF</span></td>
+              <td data-label="Standard"><a href="https://identity.foundation/didwebvh/v1.0/" target="_blank" rel="noopener">The did:webvh DID Method</a> <a class="permalink" href="#did-webvh-1-0" aria-label="Link to this row: The did:webvh DID Method 1.0">#</a> <span class="publisher">DIF</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-developing">Developing</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Extends did:web with a signed history of DID document changes, so key rotations can be verified and the DID can move to a new domain.</td>
             </tr>
           </tbody>
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Credential status</th></tr>
             <tr id="bitstring-status-list-1-0">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-bitstring-status-list/" target="_blank" rel="noopener">Bitstring Status List</a> <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-bitstring-status-list/" target="_blank" rel="noopener">Bitstring Status List</a> <a class="permalink" href="#bitstring-status-list-1-0" aria-label="Link to this row: Bitstring Status List 1.0">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Lets an issuer revoke or suspend credentials by setting bits in a compressed list, published as a credential, that hides which credential a verifier is checking.</td>
             </tr>
           </tbody>
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Exchange</th></tr>
             <tr id="chapi-1-0">
-              <td data-label="Standard"><a href="https://w3c-ccg.github.io/credential-handler-api/" target="_blank" rel="noopener">Credential Handler API</a> (CHAPI) <span class="publisher">W3C CCG</span></td>
+              <td data-label="Standard"><a href="https://w3c-ccg.github.io/credential-handler-api/" target="_blank" rel="noopener">Credential Handler API</a> (CHAPI) <a class="permalink" href="#chapi-1-0" aria-label="Link to this row: Credential Handler API 1.0">#</a> <span class="publisher">W3C CCG</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Browser API through which a website asks the user&rsquo;s chosen wallet to store or present credentials.</td>
             </tr>
             <tr id="oid4vci-1-0">
-              <td data-label="Standard"><a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html" target="_blank" rel="noopener">OpenID for Verifiable Credential Issuance</a> (OID4VCI) <span class="publisher">OpenID Foundation</span></td>
+              <td data-label="Standard"><a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html" target="_blank" rel="noopener">OpenID for Verifiable Credential Issuance</a> (OID4VCI) <a class="permalink" href="#oid4vci-1-0" aria-label="Link to this row: OpenID for Verifiable Credential Issuance 1.0">#</a> <span class="publisher">OpenID Foundation</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-developing">Developing</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">OAuth-based protocol for a wallet to receive credentials from an issuer.</td>
             </tr>
             <tr id="oid4vp-1-0">
-              <td data-label="Standard"><a href="https://openid.net/specs/openid-4-verifiable-presentations-1_0.html" target="_blank" rel="noopener">OpenID for Verifiable Presentations</a> (OID4VP) <span class="publisher">OpenID Foundation</span></td>
+              <td data-label="Standard"><a href="https://openid.net/specs/openid-4-verifiable-presentations-1_0.html" target="_blank" rel="noopener">OpenID for Verifiable Presentations</a> (OID4VP) <a class="permalink" href="#oid4vp-1-0" aria-label="Link to this row: OpenID for Verifiable Presentations 1.0">#</a> <span class="publisher">OpenID Foundation</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-developing">Developing</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">OAuth-based protocol for a verifier to request and receive credentials from a wallet.</td>
             </tr>
             <tr id="vcalm-1-0">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vcalm-1.0/" target="_blank" rel="noopener">Verifiable Credential API for Lifecycle Management</a> (VCALM) <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vcalm-1.0/" target="_blank" rel="noopener">Verifiable Credential API for Lifecycle Management</a> (VCALM) <a class="permalink" href="#vcalm-1-0" aria-label="Link to this row: Verifiable Credential API for Lifecycle Management 1.0">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-implemented">Implemented</span></td>
-              <td data-label="Notes">Formerly VC API.</td>
+              <td data-label="Notes">HTTP APIs for issuing, verifying, and updating the status of credentials, plus exchange workflows that move credentials between issuers, wallets, and verifiers. Formerly VC API.</td>
             </tr>
           </tbody>
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Storage</th></tr>
             <tr id="edv-0-2">
-              <td data-label="Standard"><a href="https://identity.foundation/edv-spec/" target="_blank" rel="noopener">Encrypted Data Vaults</a> (EDV) <span class="publisher">DIF</span></td>
+              <td data-label="Standard"><a href="https://identity.foundation/edv-spec/" target="_blank" rel="noopener">Encrypted Data Vaults</a> (EDV) <a class="permalink" href="#edv-0-2" aria-label="Link to this row: Encrypted Data Vaults 0.2">#</a> <span class="publisher">DIF</span></td>
               <td data-label="Version">0.2</td>
               <td data-label="Status"><span class="pill pill-developing">Developing</span></td>
-              <td data-label="Notes">A joint work item with the W3C CCG.</td>
+              <td data-label="Notes">Storage encrypted on the client, so a server can hold someone&rsquo;s data without being able to read it. A joint work item with the W3C CCG.</td>
             </tr>
             <tr id="pws-0-5">
-              <td data-label="Standard"><a href="https://w3c-ccg.github.io/wallet-attached-storage-spec/" target="_blank" rel="noopener">Portable Web Spaces</a> (PWS) <span class="publisher">W3C CCG</span></td>
+              <td data-label="Standard"><a href="https://w3c-ccg.github.io/wallet-attached-storage-spec/" target="_blank" rel="noopener">Portable Web Spaces</a> (PWS) <a class="permalink" href="#pws-0-5" aria-label="Link to this row: Portable Web Spaces 0.5">#</a> <span class="publisher">W3C CCG</span></td>
               <td data-label="Version">0.5</td>
               <td data-label="Status"><span class="pill pill-developing">Developing</span></td>
-              <td data-label="Notes">Formerly Wallet Attached Storage (WAS).</td>
+              <td data-label="Notes">Web storage a person controls and can grant apps and wallets access to. Formerly Wallet Attached Storage (WAS).</td>
             </tr>
           </tbody>
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Display</th></tr>
             <tr id="vc-render-method-1-0">
-              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-render-method/" target="_blank" rel="noopener">Verifiable Credential Rendering Methods</a> <span class="publisher">W3C</span></td>
+              <td data-label="Standard"><a href="https://www.w3.org/TR/vc-render-method/" target="_blank" rel="noopener">Verifiable Credential Rendering Methods</a> <a class="permalink" href="#vc-render-method-1-0" aria-label="Link to this row: Verifiable Credential Rendering Methods 1.0">#</a> <span class="publisher">W3C</span></td>
               <td data-label="Version">1.0</td>
               <td data-label="Status"><span class="pill pill-developing">Developing</span></td>
-              <td data-label="Notes"></td>
+              <td data-label="Notes">Lets an issuer say how a credential should be displayed, for example with an SVG template.</td>
             </tr>
           </tbody>
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Authorization</th></tr>
             <tr id="zcap-0-4">
-              <td data-label="Standard"><a href="https://w3c-ccg.github.io/zcap-spec/v0.4.0/" target="_blank" rel="noopener">Authorization Capabilities</a> (ZCAP) <span class="publisher">W3C CCG</span></td>
+              <td data-label="Standard"><a href="https://w3c-ccg.github.io/zcap-spec/v0.4.0/" target="_blank" rel="noopener">Authorization Capabilities</a> (ZCAP) <a class="permalink" href="#zcap-0-4" aria-label="Link to this row: Authorization Capabilities 0.4">#</a> <span class="publisher">W3C CCG</span></td>
               <td data-label="Version">0.4</td>
               <td data-label="Status"><span class="pill pill-developing">Developing</span></td>
-              <td data-label="Notes">Formerly ZCAP-LD.</td>
+              <td data-label="Notes">Signed grants of access to a resource, which the holder can delegate onward with narrower limits. Formerly ZCAP-LD.</td>
             </tr>
           </tbody>
           <tbody>
             <tr class="group"><th scope="rowgroup" colspan="4">Issuer trust</th></tr>
-            <tr id="issuer-identity-registry">
-              <td data-label="Standard"><a href="https://github.com/digitalcredentials/dcc-members-oidf" target="_blank" rel="noopener">DCC &amp; Credential Engine Issuer Identity Registry Recommendation</a> <span class="publisher">DCC, Credential Engine</span></td>
-              <td data-label="Version"></td>
-              <td data-label="Status"><span class="pill pill-developing">Developing</span></td>
-              <td data-label="Notes"></td>
+            <tr id="vc-recognized-entities-1-0">
+              <td data-label="Standard"><a href="https://w3c.github.io/vc-recognized-entities/" target="_blank" rel="noopener">Recognized Entities</a> <a class="permalink" href="#vc-recognized-entities-1-0" aria-label="Link to this row: Recognized Entities 1.0">#</a> <span class="publisher">W3C</span></td>
+              <td data-label="Version">1.0</td>
+              <td data-label="Status"><span class="pill pill-emerging">Emerging</span></td>
+              <td data-label="Notes">A credential in which an authority lists the entities it recognizes, such as issuers, and the actions each is recognized to perform.</td>
+            </tr>
+            <tr id="openid-federation-1-0">
+              <td data-label="Standard"><a href="https://openid.net/specs/openid-federation-1_0.html" target="_blank" rel="noopener">OpenID Federation</a> <a class="permalink" href="#openid-federation-1-0" aria-label="Link to this row: OpenID Federation 1.0">#</a> <span class="publisher">OpenID Foundation</span></td>
+              <td data-label="Version">1.0</td>
+              <td data-label="Status"><span class="pill pill-emerging">Emerging</span></td>
+              <td data-label="Notes">Establishes trust among members of a federation through signed statements chained to a common trust anchor. We add DIDs to an entity through an unofficial extension.</td>
             </tr>
           </tbody>
         </table>

@@ -233,6 +233,11 @@ table.standards{width:100%;border-collapse:collapse;font-size:.9375rem;line-heig
 .standards tr.group th{padding-top:30px;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo-deep);border-top:0}
 .standards td:nth-child(2){white-space:nowrap}
 .publisher{display:block;font-size:var(--step--1);color:var(--ink-2)}
+/* a row's own link; hidden until hover or focus where there is hover, always shown on touch */
+.permalink{margin-left:.15em;color:var(--ink-2);font-weight:400;text-decoration:none;opacity:0}
+.standards tr:hover .permalink,.standards tr:target .permalink,.permalink:focus-visible{opacity:1}
+.permalink:hover{color:var(--indigo)}
+@media (hover:none){.permalink{opacity:1}}
 .standards td::before{display:none}
 @media (max-width:760px){
   .standards thead{display:none}

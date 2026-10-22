@@ -210,6 +210,58 @@ textarea{min-height:110px;resize:vertical}
 .field-error{margin:2px 0 0;font-size:var(--step--1);font-weight:500;color:#9B2C2C}
 .btn:disabled{opacity:.7;cursor:progress}
 
+/* standards page: a title band, the status legend, the standards table and the problem types */
+.site-nav a[aria-current="page"]{color:var(--indigo)}
+.page-head{padding-block:clamp(44px,7vw,80px) clamp(36px,5vw,56px)}
+.page-head .wrap{display:flex;flex-direction:column;gap:18px}
+.page-head h1{font-size:var(--step-3);line-height:1.06;letter-spacing:-.025em;font-weight:700}
+.page-head .lead{max-width:var(--measure)}
+.status-legend{margin:0;display:flex;flex-direction:column}
+.status-legend div{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:6px 20px;padding-block:14px;border-top:1px solid var(--rule)}
+.status-legend div:first-child{border-top:0;padding-top:0}
+.status-legend dd{margin:0;max-width:var(--measure)}
+@media (max-width:520px){.status-legend div{grid-template-columns:minmax(0,1fr)}}
+/* the word carries the status; color only supports it. Every pair is at least 4.5:1 */
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid transparent;font-size:var(--step--1);font-weight:600;line-height:1.5;white-space:nowrap}
+.pill-implemented{background:var(--green);color:#FFFFFF}
+.pill-developing{background:var(--indigo);color:#FFFFFF}
+.pill-emerging{border-color:var(--ink-2);color:var(--ink-2)}
+.pill-deprecated{background:var(--wash);color:var(--ink-2)}
+table.standards{width:100%;border-collapse:collapse;font-size:.9375rem;line-height:1.45}
+.standards th,.standards td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-top:1px solid var(--rule)}
+.standards thead th{font-size:var(--step--1);font-weight:600;color:var(--ink-2);border-top:0;padding-top:0}
+.standards tr.group th{padding-top:30px;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo-deep);border-top:0}
+.standards td:nth-child(2){white-space:nowrap}
+.publisher{display:block;font-size:var(--step--1);color:var(--ink-2)}
+/* a row's own link; hidden until hover or focus where there is hover, always shown on touch */
+.permalink{margin-left:.15em;color:var(--ink-2);font-weight:400;text-decoration:none;opacity:0}
+.standards tr:hover .permalink,.standards tr:target .permalink,.permalink:focus-visible{opacity:1}
+.permalink:hover{color:var(--indigo)}
+@media (hover:none){.permalink{opacity:1}}
+.standards td::before{display:none}
+@media (max-width:760px){
+  .standards thead{display:none}
+  .standards,.standards tbody,.standards tr,.standards th,.standards td{display:block}
+  .standards tr{padding-block:12px;border-top:1px solid var(--rule)}
+  .standards tr.group{border-top:0;padding-bottom:0}
+  .standards th,.standards td{border-top:0;padding:3px 0}
+  /* each cell's label hangs to its left, so a wrapped note keeps its indent */
+  .standards td{position:relative;padding-left:4.5rem}
+  .standards td::before{display:block;position:absolute;left:0;top:4px;content:attr(data-label);font-size:var(--step--1);color:var(--ink-2)}
+  .standards td[data-label="Standard"]{font-weight:600;padding-left:0}
+  .standards td[data-label="Standard"]::before,.standards td:empty{display:none}
+  .standards .publisher{font-weight:400}
+}
+.problem-types{margin:0;display:flex;flex-direction:column}
+.problem-types div{padding-block:14px;border-top:1px solid var(--rule)}
+.problem-types dt{display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline;font-weight:600}
+.problem-types code{font-size:.9375rem;color:var(--indigo-deep);overflow-wrap:anywhere}
+.problem-types dd{margin:4px 0 0;max-width:var(--measure)}
+.problem-group{margin-top:22px;max-width:var(--measure)}
+/* the entry a link pointed at */
+.standards tr:target,.problem-types div:target{background:var(--wash)}
+.problem-types div:target{padding-inline:12px;margin-inline:-12px}
+
 /* footer */
 .site-footer{border-top:1px solid var(--rule);background:var(--wash)}
 .site-footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;font-size:var(--step--1);color:var(--ink-2)}

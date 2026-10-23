@@ -44,7 +44,7 @@ p{margin:0}
 #page[data-sample="off"] [data-feature="sample"]{display:none!important}
 
 /* header: sticky and solid; one-line logo on wider screens, the two-line lockup on phones */
-.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);border-bottom:1px solid var(--rule)}
+.site-header{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--rule)}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px 32px;min-height:var(--header-h)}
 .logo{display:block;line-height:0}
 .logo img{width:auto;height:48px;display:block}
@@ -77,7 +77,11 @@ p{margin:0}
   .mobile-menu a:hover{color:var(--indigo)}
 }
 @media (max-width:760px){
-  .logo img{height:50px}
+  /* the logo gives way first, so "Get in touch" and "Menu" stay on one line down to 320px */
+  .site-header .wrap{flex-wrap:nowrap;gap:12px}
+  .logo{flex:0 1 auto;min-width:0}
+  .logo img{height:auto;width:100%;max-width:178px}
+  .site-nav{flex:none;flex-wrap:nowrap;gap:6px 18px}
   /* the header already has "Get in touch", so the hero goes straight from the intro to the example */
   .hero .hero-contact{display:none}
   #page[data-sample="off"] .actions{display:none}
@@ -256,7 +260,8 @@ textarea{min-height:110px;resize:vertical}
 .person-name{font-weight:650;color:var(--indigo-deep);line-height:1.3}
 .person-role{font-size:var(--step--1);color:var(--ink-2);line-height:1.4}
 .person-link{align-self:flex-start;font-size:var(--step--1);font-weight:500;padding-block:6px}
-@media (max-width:680px){.team{grid-template-columns:repeat(3,minmax(0,1fr))}}
+#team .sec-body{container-type:inline-size}
+@container (max-width:640px){.team{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:520px){
   .team{grid-template-columns:minmax(0,1fr);gap:0}
   .person{flex-direction:row;align-items:center;gap:16px;padding-block:14px;border-top:1px solid var(--rule)}

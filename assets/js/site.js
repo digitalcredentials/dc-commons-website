@@ -5,8 +5,8 @@ var FEATURES = { sampleCredential: false };
 
 /* "Get in touch" submissions go to the "Getting Involved with DCC" Google Form.
    Entry IDs come from the form's "Get pre-filled link". The checkbox values in index.html
-   must match the form's options exactly, and the form requires a name, an email and at
-   least one choice in each checkbox question. Add a short-answer "source" question to the
+   must match the form's options exactly. The form requires a name, an email and an
+   organization type; the page also asks for an interest or the newsletter. Add a short-answer "source" question to the
    form and put its ID in `source` to record ?src= links.
    The newsletter box goes to the form's own "Newsletter" question (one option, "Yes, send
    me the newsletter.", not required). The interest question must not be required in the
@@ -65,6 +65,7 @@ function clearErrors(scope){
 document.getElementById("contactForm").addEventListener("input", function(e){
   var field = e.target.closest(".field");
   if (field && field.querySelector(".field-error")) clearErrors(field);
+  if (e.target.name === "newsletter") clearErrors(document.getElementById("f-int-group"));
 });
 
 document.querySelectorAll("input[data-other]").forEach(function(box){
@@ -97,7 +98,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   if (!name) { fieldError(f.name, "Add your name so we know who to reply to."); return; }
   if (!EMAIL_RE.test(email)) { fieldError(f.email, "Enter an email address, like name@example.org."); return; }
   if (!f.querySelector('input[name="org"]:checked')) { fieldError(f["f-org-1"], "Choose at least one option."); return; }
-  if (!f.querySelector('input[name="interest"]:checked') && !f.newsletter.checked) { fieldError(f["f-int-1"], "Choose at least one option."); return; }
+  if (!f.querySelector('input[name="interest"]:checked') && !f.newsletter.checked) { fieldError(f["f-int-1"], "Choose at least one, or check the newsletter box below."); return; }
   var emptyOther = Array.prototype.find.call(f.querySelectorAll("input[data-other]:checked"), function(box){
     return !document.getElementById(box.dataset.other).value.trim();
   });
@@ -113,12 +114,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   f.querySelectorAll('input[name="org"]:checked').forEach(function(c){ data.append(E.org, c.value); });
   if (f["f-org-other"].checked && f.orgOther.value.trim()) data.append(E.org + ".other_option_response", f.orgOther.value.trim());
   f.querySelectorAll('input[name="interest"]:checked').forEach(function(c){ data.append(E.interest, c.value); });
-  /* the newsletter box goes to its own question; without an ID it falls back to the
-     interest option "Newsletters and Updates" */
-  if (f.newsletter.checked) {
-    if (E.newsletter) data.append(E.newsletter, f.newsletter.value);
-    else data.append(E.interest, "Newsletters and Updates");
-  }
+  if (f.newsletter.checked) data.append(E.newsletter, f.newsletter.value);
   if (f["f-int-other"].checked && f.intOther.value.trim()) data.append(E.interest + ".other_option_response", f.intOther.value.trim());
   if (f.note.value.trim()) data.append(E.note, f.note.value.trim());
   var src = new URLSearchParams(location.search).get("src");
@@ -139,6 +135,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   btn.addEventListener("click", function(){ set(menu.hidden); });
   menu.addEventListener("click", function(e){ if (e.target.closest("a")) set(false); });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !menu.hidden) { set(false); btn.focus(); } });
-  document.addEventListener("click", function(e){ if (!menu.hidden && !e.target.closest(".site-header")) set(false); });
-  window.matchMedia("(max-width: 960px)").addEventListener("change", function(m){ if (!m.matches) set(false); });
+  document.addEventListener("click", function(e){ if (!menu.hidden && !e.target.closest("#mobileMenu, #menuBtn")) set(false); });
+  var wide = window.matchMedia("(max-width: 960px)"), onWide = function(m){ if (!m.matches) set(false); };
+  if (wide.addEventListener) wide.addEventListener("change", onWide); else wide.addListener(onWide);
 })();

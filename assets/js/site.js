@@ -7,10 +7,13 @@ var FEATURES = { sampleCredential: false };
    Entry IDs come from the form's "Get pre-filled link". The checkbox values in index.html
    must match the form's options exactly, and the form requires a name, an email and at
    least one choice in each checkbox question. Add a short-answer "source" question to the
-   form and put its ID in `source` to record ?src= links. */
+   form and put its ID in `source` to record ?src= links.
+   Newsletter: add a checkbox question to the form with the single option
+   "Yes, send me the newsletter" (not required) and put its ID in `newsletter`. Until then,
+   a ticked newsletter box records as the interest option "Newsletters and Updates". */
 var GOOGLE_FORM = {
   action: "https://docs.google.com/forms/d/e/1FAIpQLSdSKOHvGRTa11kynfITDm0HUtcfF0lZBmHEC3kPwDDIwnD5HA/formResponse",
-  entries: { name:"entry.643252456", email:"entry.919152693", org:"entry.1706988591", interest:"entry.1988524056", note:"entry.593582980", source:"" }
+  entries: { name:"entry.643252456", email:"entry.919152693", org:"entry.1706988591", interest:"entry.1988524056", note:"entry.593582980", source:"", newsletter:"" }
 };
 var SAMPLE_ENDPOINT = "";     // the service that emails a sample credential
 
@@ -94,7 +97,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   if (!name) { fieldError(f.name, "Add your name so we know who to reply to."); return; }
   if (!EMAIL_RE.test(email)) { fieldError(f.email, "Enter an email address, like name@example.org."); return; }
   if (!f.querySelector('input[name="org"]:checked')) { fieldError(f["f-org-1"], "Choose at least one option."); return; }
-  if (!f.querySelector('input[name="interest"]:checked')) { fieldError(f["f-int-1"], "Choose at least one option."); return; }
+  if (!f.querySelector('input[name="interest"]:checked') && !f.newsletter.checked) { fieldError(f["f-int-1"], "Choose at least one option."); return; }
   var emptyOther = Array.prototype.find.call(f.querySelectorAll("input[data-other]:checked"), function(box){
     return !document.getElementById(box.dataset.other).value.trim();
   });
@@ -110,6 +113,12 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   f.querySelectorAll('input[name="org"]:checked').forEach(function(c){ data.append(E.org, c.value); });
   if (f["f-org-other"].checked && f.orgOther.value.trim()) data.append(E.org + ".other_option_response", f.orgOther.value.trim());
   f.querySelectorAll('input[name="interest"]:checked').forEach(function(c){ data.append(E.interest, c.value); });
+  /* the newsletter box goes to its own question once `newsletter` has an ID; until then it
+     records as the existing "Newsletters and Updates" interest option */
+  if (f.newsletter.checked) {
+    if (E.newsletter) data.append(E.newsletter, f.newsletter.value);
+    else data.append(E.interest, "Newsletters and Updates");
+  }
   if (f["f-int-other"].checked && f.intOther.value.trim()) data.append(E.interest + ".other_option_response", f.intOther.value.trim());
   if (f.note.value.trim()) data.append(E.note, f.note.value.trim());
   var src = new URLSearchParams(location.search).get("src");
@@ -122,3 +131,14 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
     .catch(function(){ setStatus(status, "That didn't go through. Check your connection and try again.", "err"); })
     .then(function(){ send.disabled = false; send.textContent = label; });
 });
+
+/* Phones: the "Menu" button shows the section links under the header. */
+(function(){
+  var btn = document.getElementById("menuBtn"), menu = document.getElementById("mobileMenu");
+  function set(open){ menu.hidden = !open; btn.setAttribute("aria-expanded", open); btn.textContent = open ? "Close" : "Menu"; }
+  btn.addEventListener("click", function(){ set(menu.hidden); });
+  menu.addEventListener("click", function(e){ if (e.target.closest("a")) set(false); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !menu.hidden) { set(false); btn.focus(); } });
+  document.addEventListener("click", function(e){ if (!menu.hidden && !e.target.closest(".site-header")) set(false); });
+  window.matchMedia("(max-width: 760px)").addEventListener("change", function(m){ if (!m.matches) set(false); });
+})();

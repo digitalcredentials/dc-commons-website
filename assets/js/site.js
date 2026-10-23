@@ -5,12 +5,11 @@ var FEATURES = { sampleCredential: false };
 
 /* "Get in touch" submissions go to the "Getting Involved with DCC" Google Form.
    Entry IDs come from the form's "Get pre-filled link". The checkbox values in index.html
-   must match the form's options exactly. The form requires a name, an email and an
-   organization type; the page also asks for an interest or the newsletter. Add a short-answer "source" question to the
-   form and put its ID in `source` to record ?src= links.
-   The newsletter box goes to the form's own "Newsletter" question (one option, "Yes, send
-   me the newsletter.", not required). The interest question must not be required in the
-   form, so someone can sign up for the newsletter alone. */
+   must match the form's options exactly, and the page requires the same answers the form
+   does: a name, an email, and at least one organization type and one interest. Add a
+   short-answer "source" question to the form and put its ID in `source` to record ?src= links.
+   The newsletter box goes to the form's own optional "Newsletter" question (one option,
+   "Yes, send me the newsletter."). */
 var GOOGLE_FORM = {
   action: "https://docs.google.com/forms/d/e/1FAIpQLSdSKOHvGRTa11kynfITDm0HUtcfF0lZBmHEC3kPwDDIwnD5HA/formResponse",
   entries: { name:"entry.643252456", email:"entry.919152693", org:"entry.1706988591", interest:"entry.1988524056", note:"entry.593582980", source:"", newsletter:"entry.1000204259" }
@@ -65,7 +64,6 @@ function clearErrors(scope){
 document.getElementById("contactForm").addEventListener("input", function(e){
   var field = e.target.closest(".field");
   if (field && field.querySelector(".field-error")) clearErrors(field);
-  if (e.target.name === "newsletter") clearErrors(document.getElementById("f-int-group"));
 });
 
 document.querySelectorAll("input[data-other]").forEach(function(box){
@@ -98,7 +96,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   if (!name) { fieldError(f.name, "Add your name so we know who to reply to."); return; }
   if (!EMAIL_RE.test(email)) { fieldError(f.email, "Enter an email address, like name@example.org."); return; }
   if (!f.querySelector('input[name="org"]:checked')) { fieldError(f["f-org-1"], "Choose at least one option."); return; }
-  if (!f.querySelector('input[name="interest"]:checked') && !f.newsletter.checked) { fieldError(f["f-int-1"], "Choose at least one, or check the newsletter box below."); return; }
+  if (!f.querySelector('input[name="interest"]:checked')) { fieldError(f["f-int-1"], "Choose at least one option."); return; }
   var emptyOther = Array.prototype.find.call(f.querySelectorAll("input[data-other]:checked"), function(box){
     return !document.getElementById(box.dataset.other).value.trim();
   });

@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Digital Credentials Commons">
-<meta property="og:description" content="Digital credentials that go where you go. Portable, private and instantly verifiable.">
+<meta property="og:description" content="Digital credentials that go where you go. Portable, private, and instantly verifiable.">
 <meta property="og:url" content="https://dccommons.org/">
 <meta property="og:image" content="https://dccommons.org/android-chrome-512x512.png">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -38,9 +38,19 @@
       <a href="#how">How it works</a>
       <a href="#work">Our work</a>
       <a href="#about">About</a>
+      <a href="#team">Our team</a>
       <a class="nav-contact" href="#contact">Get in touch</a>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
     </nav>
   </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Sections menu" hidden>
+    <ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#work">Our work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#team">Our team</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main id="top">
@@ -49,13 +59,12 @@
   <div class="wrap hero-grid">
     <div class="hero-text">
       <h1>Digital credentials that go where you go</h1>
-      <p class="tagline">Portable, private and instantly verifiable.</p>
-      <p class="lead">A diploma, certificate, license or badge can now carry its own proof along with rich detail about the skills behind it. Share it, and anyone can check that it&rsquo;s real.</p>
+      <p class="tagline">Portable, private, and instantly verifiable.</p>
+      <p class="lead">A diploma, certificate, license, or badge can now carry its own proof along with rich detail about the skills behind it. Share it, and anyone can check that it&rsquo;s real.</p>
       <div class="actions">
         <a class="btn btn-primary" href="#try" data-feature="sample">Get a sample credential</a>
         <a class="btn btn-secondary hero-contact" href="#contact">Get in touch</a>
       </div>
-      <p class="lineage">Formerly the <a href="https://dcconsortium.org/" target="_blank" rel="noopener">Digital Credentials Consortium at MIT</a>, now hosted by Strada Education Foundation.</p>
     </div>
 
     <figure class="demo" aria-label="Example: a digital credential being checked">
@@ -95,6 +104,10 @@
         </ul>
       </div>
     </figure>
+
+    <div class="who-block">
+      <p class="who" id="who">Digital Credentials Commons (DCC) is a growing community of institutions, organizations, vendors, and learners that are advancing the use of privacy-first, portable, verifiable digital credentials.</p>
+    </div>
   </div>
 </section>
 
@@ -103,13 +116,13 @@
     <div class="sec">
       <div class="sec-head"><h2>How it works</h2></div>
       <div class="sec-body">
-        <p>A digital credential is a record of something you&rsquo;ve accomplished, such as a degree, a completed course or a job you&rsquo;ve held. The organization behind it signs it digitally, and that signature stays attached to the record.</p>
+        <p>A digital credential can be a record of something you&rsquo;ve accomplished, such as a degree, a completed course, or a job you&rsquo;ve held. The organization behind it signs it digitally, and that signature stays attached to the record.</p>
         <ol class="steps">
-          <li><strong>You receive it.</strong><span>A school, training program or employer issues the credential to you.</span></li>
+          <li><strong>You receive it.</strong><span>A school, training program, or employer issues the credential to you.</span></li>
           <li><strong>You keep it.</strong><span>It goes into a digital wallet with your other credentials, and you decide who sees it.</span></li>
-          <li><strong>You share it.</strong><span>Send it to an employer, a school or anyone else. They can check it themselves, on the spot.</span></li>
+          <li><strong>You share it.</strong><span>Send it to an employer, a school, or anyone else. They can check it themselves, on the spot.</span></li>
         </ol>
-        <p>That&rsquo;s why it&rsquo;s called a verifiable credential. Because it&rsquo;s built on open standards, it can be checked anywhere, not only where it was issued.</p>
+        <p>The DCC implements and encourages the use of W3C Verifiable Credentials and 1EdTech Open Badges, because open standards mean digital credentials can be used across the web. They work from one system to the next, not only where they were issued. These standards also give learners verifiable achievements they can access right away, with control over who or what has access to them.</p>
 
         <div class="try" id="try" data-feature="sample">
           <div class="try-text">
@@ -140,18 +153,22 @@
     <div class="sec">
       <div class="sec-head"><h2>Our work</h2></div>
       <div class="sec-body">
-        <p>At the center of our work is a simple goal: empowering learners to have real access to and control over their credential data, so they can store and share their achievements wherever opportunity takes them.</p>
-        <p>Digital Credentials Commons brings together the people and organizations working toward that goal and helps advance understanding and adoption of digital credentials. If you&rsquo;re new to this, we&rsquo;ll help you figure out where to start.</p>
+        <p>At the center of our work is a simple goal: <strong>empowering learners</strong> to have real access to and control over their credential data, so they can store and share their achievements wherever opportunity takes them.</p>
+        <p>We bring together the people and organizations working toward that goal. If you&rsquo;re new to this, we&rsquo;ll help you figure out where to start.</p>
 
         <div class="part">
-          <h3>We help shape the standards</h3>
-          <p>Standards are shaped by whoever takes part. We take part on behalf of learners, the organizations that serve them and the vendors that build for them, in the <a href="https://w3c-ccg.github.io/vc-ed/" target="_blank" rel="noopener">W3C Verifiable Credentials for Education Task Force</a>, the <a href="https://www.w3.org/community/credentials/" target="_blank" rel="noopener">W3C Credentials Community Group</a> and <a href="https://www.1edtech.org/standards/open-badges" target="_blank" rel="noopener">1EdTech&rsquo;s work on Open Badges</a>.</p>
+          <h3>Open standards</h3>
+          <p>Standards are shaped by whoever takes part. We take part on behalf of learners, the organizations that serve them, and the vendors that build for them, in the <a href="https://www.w3.org/community/credentials/" target="_blank" rel="noopener">W3C Credentials Community Group</a> and <a href="https://www.1edtech.org/standards/open-badges" target="_blank" rel="noopener">1EdTech&rsquo;s work on Open Badges</a>.</p>
         </div>
 
         <div class="part">
-          <h3>We build open-source software</h3>
+          <h3>Open-source software</h3>
           <p>Everything we build is freely available and open source. You&rsquo;ll find all of it at <a href="https://github.com/digitalcredentials" target="_blank" rel="noopener">github.com/digitalcredentials</a>.</p>
           <div class="tools">
+            <div class="tool">
+              <span class="tool-name">Issuing service and libraries</span>
+              <p>Tools for issuing credentials from your own systems, either as a standalone service or built into software you already run.</p>
+            </div>
             <div class="tool">
               <span class="tool-name">Learner Credential Wallet</span>
               <p>A wallet for keeping and sharing your credentials on your phone, for iOS and Android. We&rsquo;re also building a new web version. <a href="#contact">Get in touch</a> to hear more about it.</p>
@@ -162,26 +179,12 @@
               <p>A free website for checking whether a credential is real, with no account needed.</p>
               <div class="tool-links"><a href="https://verifierplus.org" target="_blank" rel="noopener">verifierplus.org</a></div>
             </div>
-            <div class="tool">
-              <span class="tool-name">Issuing service and libraries</span>
-              <p>Tools for issuing credentials from your own systems, either as a standalone service or built into software you already run.</p>
-            </div>
-            <div class="tool">
-              <span class="tool-name">Wallet Attached Storage</span>
-              <p>A secure, API-based way to store and share digital credentials. We wrote the specification, now hosted by the W3C Credentials Community Group, and the new web version of Learner Credential Wallet is being built on it.</p>
-              <div class="tool-links"><a href="https://w3c-ccg.github.io/wallet-attached-storage-spec/" target="_blank" rel="noopener">Specification</a><a href="https://github.com/digitalcredentials/was-server-aws" target="_blank" rel="noopener">Code</a></div>
-            </div>
           </div>
         </div>
 
         <div class="part">
-          <h3>We run shared services</h3>
-          <p>Today that means the Issuer Identity Registry, which helps anyone checking a credential confirm who issued it. Learner Credential Wallet and VerifierPlus check it automatically.</p>
-        </div>
-
-        <div class="part">
-          <h3>Beyond education</h3>
-          <p>Verifiable credentials began as a way for people to carry records of what they&rsquo;d learned, but the approach works for anything that matters: a professional license, an employment record, a permit. In California, for example, the DMV&rsquo;s digital driver&rsquo;s license is also available as a verifiable credential. We focus on learning and work because that&rsquo;s where our community is. The standards we help shape, and the software and services we develop, apply far more widely.</p>
+          <h3>Issuer trust</h3>
+          <p>The Issuer Identity Registry, developed with <a href="https://credentialengine.org/" target="_blank" rel="noopener">Credential Engine</a>, helps anyone checking a credential confirm the identity of the organization that issued it. Learner Credential Wallet and VerifierPlus check it automatically.</p>
         </div>
       </div>
     </div>
@@ -193,9 +196,61 @@
     <div class="sec">
       <div class="sec-head"><h2>About</h2></div>
       <div class="sec-body">
-        <p>The Digital Credentials Consortium was founded in 2018 at MIT Open Learning by universities across North America, Europe and Asia. Together they built shared infrastructure for issuing, keeping and checking digital credentials.</p>
-        <p>Today it continues as the Digital Credentials Commons, hosted by <a href="https://www.strada.org/" target="_blank" rel="noopener">Strada Education Foundation</a>, and works with a growing network of partners across education, employment and technology.</p>
-        <p>A commons is something a community builds and looks after together, and that everyone can have access to. Our software, research and standards work are open to all, and anyone can report a problem, contribute code or join the open W3C groups we take part in. We don&rsquo;t sell credentials. We build open tools that schools, employers, governments and vendors can all use and build on.</p>
+        <p>The <a href="https://dcconsortium.org/" target="_blank" rel="noopener">Digital Credentials Consortium</a> was founded in 2018 at MIT Open Learning by a group of member universities across North America, Europe, and Asia. Together they built shared infrastructure for issuing, keeping, and checking digital credentials.</p>
+        <p>Today it continues as Digital Credentials Commons, hosted by <a href="https://www.strada.org/" target="_blank" rel="noopener">Strada Education Foundation</a>. We&rsquo;re a membership organization and a community of partners across education, employment, government, and technology.</p>
+        <p>We contribute to open standards and develop open-source software. We also provide technology services and consulting to help organizations adopt digital credentials.</p>
+        <p>If you&rsquo;re an organization or vendor interested in working with us, <a href="#contact">let us know</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="team">
+  <div class="wrap">
+    <div class="sec">
+      <div class="sec-head"><h2>Our team</h2></div>
+      <div class="sec-body">
+        <ul class="team">
+          <li class="person">
+            <img class="person-photo" src="assets/img/team/kerri.jpg" alt="" width="112" height="112" loading="lazy">
+            <div class="person-text">
+              <span class="person-name">Kerri Lemoie</span>
+              <span class="person-role">Executive Director</span>
+              <a class="person-link" href="https://www.linkedin.com/in/kerrilemoie/" target="_blank" rel="noopener" aria-label="Kerri Lemoie on LinkedIn">LinkedIn</a>
+            </div>
+          </li>
+          <li class="person">
+            <img class="person-photo" src="assets/img/team/james.jpg" alt="" width="112" height="112" loading="lazy">
+            <div class="person-text">
+              <span class="person-name">James Chartrand</span>
+              <span class="person-role">Chief Solutions Architect</span>
+              <a class="person-link" href="https://www.linkedin.com/in/james-chartrand-4544b717/" target="_blank" rel="noopener" aria-label="James Chartrand on LinkedIn">LinkedIn</a>
+            </div>
+          </li>
+          <li class="person">
+            <img class="person-photo" src="assets/img/team/nate.jpg" alt="" width="112" height="112" loading="lazy">
+            <div class="person-text">
+              <span class="person-name">Nate Otto</span>
+              <span class="person-role">Chief Standards Architect</span>
+              <a class="person-link" href="https://www.linkedin.com/in/nateotto/" target="_blank" rel="noopener" aria-label="Nate Otto on LinkedIn">LinkedIn</a>
+            </div>
+          </li>
+          <li class="person">
+            <img class="person-photo" src="assets/img/team/sunny.jpg" alt="" width="112" height="112" loading="lazy">
+            <div class="person-text">
+              <span class="person-name">Sunny Lee</span>
+              <span class="person-role">Principal Product Manager</span>
+              <a class="person-link" href="https://www.linkedin.com/in/threeqube/" target="_blank" rel="noopener" aria-label="Sunny Lee on LinkedIn">LinkedIn</a>
+            </div>
+          </li>
+          <li class="person">
+            <img class="person-photo" src="assets/img/team/rachel.jpg" alt="" width="112" height="112" loading="lazy">
+            <div class="person-text">
+              <span class="person-name">Rachel Scherer</span>
+              <span class="person-role">Strategy Advisor</span>
+              <a class="person-link" href="https://www.linkedin.com/in/rachelpscherer/" target="_blank" rel="noopener" aria-label="Rachel Scherer on LinkedIn">LinkedIn</a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -205,7 +260,7 @@
     <div class="sec">
       <div class="sec-head"><h2>Get in touch</h2></div>
       <div class="sec-body">
-        <p>Tell us who you are and what you&rsquo;re interested in. We&rsquo;ll follow up with news, resources and, if you&rsquo;d like, a time to talk.</p>
+        <p>Tell us who you are and what you&rsquo;re interested in. We&rsquo;ll follow up with news and resources, and set up a time to talk if you&rsquo;d like.</p>
         <form class="contact" id="contactForm" method="post" novalidate>
           <div class="field">
             <label for="f-name">Name <span class="req">(required)</span></label>
@@ -219,7 +274,7 @@
             <legend>How would you describe your organization? <span class="req">(choose at least one)</span></legend>
             <div class="checks">
               <label><input type="checkbox" id="f-org-1" name="org" value="Educational Institution"> Educational institution</label>
-              <label><input type="checkbox" id="f-org-2" name="org" value="Local, State, or Other Government"> Local, state or other government</label>
+              <label><input type="checkbox" id="f-org-2" name="org" value="Local, State, or Other Government"> Local, state, or other government</label>
               <label><input type="checkbox" id="f-org-3" name="org" value="Employer / HR Systems"> Employer or HR systems</label>
               <label><input type="checkbox" id="f-org-4" name="org" value="Credentialing Organization"> Credentialing organization</label>
               <label><input type="checkbox" id="f-org-5" name="org" value="Career Navigator"> Career navigator</label>
@@ -236,14 +291,18 @@
             <legend>What are you interested in? <span class="req">(choose at least one)</span></legend>
             <div class="checks">
               <label><input type="checkbox" id="f-int-1" name="interest" value="Technology and Product"> Technology and product</label>
-              <label><input type="checkbox" id="f-int-2" name="interest" value="Membership and Ecosystem"> Partnership and ecosystem</label>
-              <label><input type="checkbox" id="f-int-3" name="interest" value="Docs, Videos, and Public Goods"> Docs, videos and public goods</label>
-              <label><input type="checkbox" id="f-int-4" name="interest" value="Newsletters and Updates"> News and updates</label>
+              <label><input type="checkbox" id="f-int-2" name="interest" value="Membership and Ecosystem"> Membership and ecosystem</label>
+              <label><input type="checkbox" id="f-int-3" name="interest" value="Docs, Videos, and Public Goods"> Docs, videos, and public goods</label>
               <label><input type="checkbox" id="f-int-5" name="interest" value="Scheduling a meeting or event meetup"> Meeting up, at an event or online</label>
               <label><input type="checkbox" id="f-int-other" name="interest" value="__other_option__" data-other="f-int-other-text"> Other</label>
             </div>
             <input type="text" id="f-int-other-text" class="other-text" name="intOther" aria-label="Describe your interest" placeholder="Describe your interest" hidden>
           </fieldset>
+          <div class="field">
+            <div class="checks single">
+              <label><input type="checkbox" id="f-newsletter" name="newsletter" value="Yes, send me the newsletter."> Check here if you&rsquo;d like to receive our newsletter.</label>
+            </div>
+          </div>
           <div class="field">
             <label for="f-note">Anything else you&rsquo;d like us to know?</label>
             <textarea id="f-note" name="note"></textarea>

@@ -5,12 +5,14 @@ var FEATURES = { sampleCredential: false };
 
 /* "Get in touch" submissions go to the "Getting Involved with DCC" Google Form.
    Entry IDs come from the form's "Get pre-filled link". The checkbox values in index.html
-   must match the form's options exactly, and the form requires a name, an email and at
-   least one choice in each checkbox question. Add a short-answer "source" question to the
-   form and put its ID in `source` to record ?src= links. */
+   must match the form's options exactly, and the page requires the same answers the form
+   does: a name, an email, and at least one organization type and one interest. Add a
+   short-answer "source" question to the form and put its ID in `source` to record ?src= links.
+   The newsletter box goes to the form's own optional "Newsletter" question (one option,
+   "Yes, send me the newsletter."). */
 var GOOGLE_FORM = {
   action: "https://docs.google.com/forms/d/e/1FAIpQLSdSKOHvGRTa11kynfITDm0HUtcfF0lZBmHEC3kPwDDIwnD5HA/formResponse",
-  entries: { name:"entry.643252456", email:"entry.919152693", org:"entry.1706988591", interest:"entry.1988524056", note:"entry.593582980", source:"" }
+  entries: { name:"entry.643252456", email:"entry.919152693", org:"entry.1706988591", interest:"entry.1988524056", note:"entry.593582980", source:"", newsletter:"entry.1000204259" }
 };
 var SAMPLE_ENDPOINT = "";     // the service that emails a sample credential
 
@@ -110,6 +112,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   f.querySelectorAll('input[name="org"]:checked').forEach(function(c){ data.append(E.org, c.value); });
   if (f["f-org-other"].checked && f.orgOther.value.trim()) data.append(E.org + ".other_option_response", f.orgOther.value.trim());
   f.querySelectorAll('input[name="interest"]:checked').forEach(function(c){ data.append(E.interest, c.value); });
+  if (f.newsletter.checked) data.append(E.newsletter, f.newsletter.value);
   if (f["f-int-other"].checked && f.intOther.value.trim()) data.append(E.interest + ".other_option_response", f.intOther.value.trim());
   if (f.note.value.trim()) data.append(E.note, f.note.value.trim());
   var src = new URLSearchParams(location.search).get("src");
@@ -122,3 +125,15 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
     .catch(function(){ setStatus(status, "That didn't go through. Check your connection and try again.", "err"); })
     .then(function(){ send.disabled = false; send.textContent = label; });
 });
+
+/* Phones: the "Menu" button shows the section links under the header. */
+(function(){
+  var btn = document.getElementById("menuBtn"), menu = document.getElementById("mobileMenu");
+  function set(open){ menu.hidden = !open; btn.setAttribute("aria-expanded", open); btn.textContent = open ? "Close" : "Menu"; }
+  btn.addEventListener("click", function(){ set(menu.hidden); });
+  menu.addEventListener("click", function(e){ if (e.target.closest("a")) set(false); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !menu.hidden) { set(false); btn.focus(); } });
+  document.addEventListener("click", function(e){ if (!menu.hidden && !e.target.closest("#mobileMenu, #menuBtn")) set(false); });
+  var wide = window.matchMedia("(max-width: 960px)"), onWide = function(m){ if (!m.matches) set(false); };
+  if (wide.addEventListener) wide.addEventListener("change", onWide); else wide.addListener(onWide);
+})();

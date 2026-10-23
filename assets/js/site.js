@@ -140,5 +140,5 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   menu.addEventListener("click", function(e){ if (e.target.closest("a")) set(false); });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !menu.hidden) { set(false); btn.focus(); } });
   document.addEventListener("click", function(e){ if (!menu.hidden && !e.target.closest(".site-header")) set(false); });
-  window.matchMedia("(max-width: 760px)").addEventListener("change", function(m){ if (!m.matches) set(false); });
+  window.matchMedia("(max-width: 960px)").addEventListener("change", function(m){ if (!m.matches) set(false); });
 })();

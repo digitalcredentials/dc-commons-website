@@ -60,8 +60,8 @@ p{margin:0}
 }
 .menu-btn:hover{color:var(--indigo);text-decoration:underline}
 .mobile-menu{display:none}
-@media (max-width:760px){
-  .logo img{height:50px}
+/* the "Menu" button takes over before the five section links would wrap */
+@media (max-width:960px){
   .site-nav{gap:6px 22px}
   .site-nav a:not(.nav-contact){display:none}
   .menu-btn{display:inline-block}
@@ -75,6 +75,9 @@ p{margin:0}
   .mobile-menu a{display:block;padding-block:14px;border-top:1px solid var(--rule);color:var(--ink);font-weight:500;text-decoration:none}
   .mobile-menu li:first-child a{border-top:0}
   .mobile-menu a:hover{color:var(--indigo)}
+}
+@media (max-width:760px){
+  .logo img{height:50px}
   /* the header already has "Get in touch", so the hero goes straight from the intro to the example */
   .hero-contact{display:none}
   #page[data-sample="off"] .actions{display:none}
@@ -244,6 +247,22 @@ textarea{min-height:110px;resize:vertical}
 .status.err{color:#9B2C2C}
 .field-error{margin:2px 0 0;font-size:var(--step--1);font-weight:500;color:#9B2C2C}
 .btn:disabled{opacity:.7;cursor:progress}
+
+/* our team: photo, name, role and LinkedIn; five across on wider screens, three on mid-size, a list on phones */
+.team{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px 24px}
+.person{display:flex;flex-direction:column;gap:12px;min-width:0}
+.person-photo{display:block;width:100%;max-width:112px;height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;background:var(--wash);border:1px solid var(--rule)}
+.person-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.person-name{font-weight:650;color:var(--indigo-deep);line-height:1.3}
+.person-role{font-size:var(--step--1);color:var(--ink-2);line-height:1.4}
+.person-link{align-self:flex-start;font-size:var(--step--1);font-weight:500;padding-block:6px}
+@media (max-width:680px){.team{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){
+  .team{grid-template-columns:minmax(0,1fr);gap:0}
+  .person{flex-direction:row;align-items:center;gap:16px;padding-block:14px;border-top:1px solid var(--rule)}
+  .person:first-child{border-top:0;padding-top:0}
+  .person-photo{width:72px;flex:none}
+}
 
 /* footer */
 .site-footer{border-top:1px solid var(--rule);background:var(--wash)}

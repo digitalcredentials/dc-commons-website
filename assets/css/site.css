@@ -79,7 +79,7 @@ p{margin:0}
 @media (max-width:760px){
   .logo img{height:50px}
   /* the header already has "Get in touch", so the hero goes straight from the intro to the example */
-  .hero-contact{display:none}
+  .hero .hero-contact{display:none}
   #page[data-sample="off"] .actions{display:none}
 }
 

@@ -8,12 +8,12 @@ var FEATURES = { sampleCredential: false };
    must match the form's options exactly, and the form requires a name, an email and at
    least one choice in each checkbox question. Add a short-answer "source" question to the
    form and put its ID in `source` to record ?src= links.
-   Newsletter: add a checkbox question to the form with the single option
-   "Yes, send me the newsletter" (not required) and put its ID in `newsletter`. Until then,
-   a ticked newsletter box records as the interest option "Newsletters and Updates". */
+   The newsletter box goes to the form's own "Newsletter" question (one option, "Yes, send
+   me the newsletter.", not required). The interest question must not be required in the
+   form, so someone can sign up for the newsletter alone. */
 var GOOGLE_FORM = {
   action: "https://docs.google.com/forms/d/e/1FAIpQLSdSKOHvGRTa11kynfITDm0HUtcfF0lZBmHEC3kPwDDIwnD5HA/formResponse",
-  entries: { name:"entry.643252456", email:"entry.919152693", org:"entry.1706988591", interest:"entry.1988524056", note:"entry.593582980", source:"", newsletter:"" }
+  entries: { name:"entry.643252456", email:"entry.919152693", org:"entry.1706988591", interest:"entry.1988524056", note:"entry.593582980", source:"", newsletter:"entry.1000204259" }
 };
 var SAMPLE_ENDPOINT = "";     // the service that emails a sample credential
 
@@ -113,8 +113,8 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   f.querySelectorAll('input[name="org"]:checked').forEach(function(c){ data.append(E.org, c.value); });
   if (f["f-org-other"].checked && f.orgOther.value.trim()) data.append(E.org + ".other_option_response", f.orgOther.value.trim());
   f.querySelectorAll('input[name="interest"]:checked').forEach(function(c){ data.append(E.interest, c.value); });
-  /* the newsletter box goes to its own question once `newsletter` has an ID; until then it
-     records as the existing "Newsletters and Updates" interest option */
+  /* the newsletter box goes to its own question; without an ID it falls back to the
+     interest option "Newsletters and Updates" */
   if (f.newsletter.checked) {
     if (E.newsletter) data.append(E.newsletter, f.newsletter.value);
     else data.append(E.interest, "Newsletters and Updates");

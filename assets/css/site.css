@@ -317,6 +317,8 @@ table.standards{width:100%;border-collapse:collapse;font-size:.9375rem;line-heig
 .problem-types code{font-size:.9375rem;color:var(--indigo-deep);overflow-wrap:anywhere}
 .problem-types dd{margin:4px 0 0;max-width:var(--measure)}
 .problem-group{margin-top:22px;max-width:var(--measure)}
+/* an example address, sized like the problem codes; on a phone it breaks before its "#" (and after the domain if it must), never past the edge */
+code.url{font-size:.9375rem;overflow-wrap:anywhere}
 /* the entry a link pointed at */
 .standards tr:target,.problem-types div:target{background:var(--wash)}
 .problem-types div:target{padding-inline:12px;margin-inline:-12px}

@@ -270,7 +270,7 @@ textarea{min-height:110px;resize:vertical}
 }
 
 /* standards page: a title band, the status legend, the standards table and the problem types */
-.site-nav a[aria-current="page"]{color:var(--indigo)}
+.site-nav a[aria-current="page"],.mobile-menu a[aria-current="page"]{color:var(--indigo)}
 .page-head{padding-block:clamp(44px,7vw,80px) clamp(36px,5vw,56px)}
 .page-head .wrap{display:flex;flex-direction:column;gap:18px}
 .page-head h1{font-size:var(--step-3);line-height:1.06;letter-spacing:-.025em;font-weight:700}

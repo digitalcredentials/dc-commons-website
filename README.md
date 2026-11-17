@@ -1,12 +1,14 @@
 # dccommons.org
 
-The one-page site for Digital Credentials Commons, served by GitHub Pages from this repo (see `CNAME`).
+The site for Digital Credentials Commons, served by GitHub Pages from this repo (see `CNAME`).
 
 ## Files
 
-- `index.html`: the page
+- `index.html`: the home page
+- `standards.html`: the standards page, at /standards. It renders the standards catalog in DCC's planning repo; change the catalog first. Every id on it is a permanent URL. Locally, open /standards.html.
 - `assets/css/site.css`: styles
-- `assets/js/site.js`: feature flags, form handling and the hero animation
+- `assets/js/site.js`: the home page's feature flags, form handling and the hero animation
+- `assets/js/menu.js`: the phone header menu, on every page. Each page's header repeats the same links
 - `assets/img/`: logos from the Logo Kit v1.0 (one-line, horizontal, mark)
 
 ## Settings in `assets/js/site.js`
